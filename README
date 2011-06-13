@@ -1,0 +1,51 @@
+***********************		//ScubaKit\\	*************************************
+			     README version 1.0
+
+Author: Choel (Sadmean)
+
+Index:
+	1. What is ScubaKit?
+	2. How do I install ScubaKit?
+	3. How do I configure ScubaKit?
+	4. How do I contact the author?
+
+
+1. What is ScubaKit?
+	
+	ScubaKit is a plugin for Bukkit (itself a mod for Minecraft) that allows helmets to be used as scuba diving dear.
+	By default, only the pumpkin allows you to stay underwater for an extra chunk of time, but this can be configured.
+
+2. How do I install ScubaKit?
+
+	Simply place the ScubaKit.jar file into your Plugin directory. 
+	If you got a jar file that reads something like ScubaKit-1.0.0.jar, you need to remove the "-1.0.0" part from it.
+	I think, I never actually tested leaving it there. There is an included folder that contains the config.yml, but you don't HAVE to put that in. The plugin will create that automaticly
+
+3. How do I configure ScubaKit?
+
+	open config.yml in Plugins/ScubaKit/  . It should look something like this;
+scubaValues:
+
+    leatherAir: 320
+
+    diamondAir: 320
+
+    ironAir: 320
+
+    pumpkinAir: 2025
+
+    chainAir: 320
+
+    defaultAir: 320
+
+    goldAir: 320
+
+	I know the order is a little weird ...
+	Anyway, the number listed is the number of tics you can stay underwater with that helm. 
+	I believe vanilla Minecraft's default value is 301
+
+4. How do I contact the author
+
+	My E-mail address is sadmean@sadmean.com
+	The source for this Plugin is at https://github.com/choel/ScubaKit
+	There is also a thread on the bukkit forums, probably where you found this plugin
