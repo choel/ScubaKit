@@ -89,13 +89,13 @@ public class ScubaKit extends JavaPlugin {
 		//start setting values
 		Configuration configYAML = getThisPlugin().getConfiguration();
 		configYAML.load();
-		defaultAir = configYAML.getInt("scubaValues.defaultAir", 0);
-		pumpkinAir = configYAML.getInt("scubaValues.pumpkinAir", 0);
-		diamondAir = configYAML.getInt("scubaValues.diamondAir", 0);
-		goldAir = configYAML.getInt("scubaValues.goldAir", 0);
-		ironAir = configYAML.getInt("scubaValues.ironAir", 0);
-		leatherAir = configYAML.getInt("scubaValues.leatherAir", 0);
-		chainAir = configYAML.getInt("scubaValues.chainAir", 0);
+		defaultAir = configYAML.getInt("scubaValues.defaultAir", 0) + 1;
+		pumpkinAir = configYAML.getInt("scubaValues.pumpkinAir", 0) + 1;
+		diamondAir = configYAML.getInt("scubaValues.diamondAir", 0) + 1;
+		goldAir = configYAML.getInt("scubaValues.goldAir", 0) + 1;
+		ironAir = configYAML.getInt("scubaValues.ironAir", 0) + 1;
+		leatherAir = configYAML.getInt("scubaValues.leatherAir", 0) + 1;
+		chainAir = configYAML.getInt("scubaValues.chainAir", 0) + 1;
 		
 		if(pumpkinAir == 0 && defaultAir == 0 && goldAir == 0 && chainAir == 0 && leatherAir == 0 && diamondAir == 0) {
 			log_It("severe", "All values reported as zero, this should never happen"); 
