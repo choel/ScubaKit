@@ -3,7 +3,7 @@
   <groupId>sadmean.mc.scubaKit</groupId>
   <artifactId>ScubaKit</artifactId>
   <name>ScubaKit</name>
-  <version>1.0.0</version>
+  <version>1.0.1</version>
   <url>http://mc.sadmean.com</url>
   <dependencies>
   	<dependency>
