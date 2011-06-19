@@ -22,9 +22,11 @@ public class ScubaPlayerListener extends PlayerListener {
 	public void onPlayerMove(PlayerMoveEvent event){
 		
 		//and set
+		
 		player = event.getPlayer();
 		
 		ScubaKit.setAir(player);
+		/* commented out all those code because its useless. Will save for now.
 		ScubaKit.log_It("finest", " Checking to see if a message needs to be sent to " + player.getName());
 		int air = player.getRemainingAir();
 		switch (air) {
@@ -49,7 +51,8 @@ public class ScubaPlayerListener extends PlayerListener {
 		case 0: player.sendMessage(chatStart + ChatColor.RED + "YOU ARE OUT OF AIR!"); break;
 		default:
 			break;
-		}
+			
+		} */
 	}
 	
 	public static ScubaKit plugin; public ScubaPlayerListener(ScubaKit instance) { 

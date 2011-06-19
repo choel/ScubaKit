@@ -2,8 +2,11 @@ package sadmean.mc.scubaKit;
 
 import java.io.File;
 import java.io.IOException;
+import java.util.List;
 import java.util.logging.Logger;
 
+import org.bukkit.ChatColor;
+import org.bukkit.World;
 import org.bukkit.plugin.PluginDescriptionFile;
 import org.bukkit.plugin.PluginManager;
 import org.bukkit.plugin.java.JavaPlugin;
@@ -105,6 +108,48 @@ public class ScubaKit extends JavaPlugin {
 			//3. Values were manually set to Zero in the config. I have no idea why you would do that, but you could
 		}
 		
+		int shit = getThisPlugin().getServer().getScheduler().scheduleSyncRepeatingTask(getThisPlugin(), new Runnable() {
+
+		    public void run() {
+		    	log_It("fine", "ScubaTask is on the case!");
+		        //getServer().broadcastMessage("This is a test of Tyler's Timed Task Thread Termination. (or TTTTT)");
+		        int worldNumber = 0;
+		        int playerNumber = 0;
+		        int airLeft;
+		        Player player;
+		        List<World> worlds = getServer().getWorlds();
+				while (worldNumber < worlds.size()) {
+					List<Player> playerList = worlds.get(worldNumber).getPlayers();
+						while (playerNumber < playerList.size()) {
+							player = playerList.get(playerNumber);
+							if (player.getMaximumAir() != player.getRemainingAir()) {
+								//Air Check and message send
+								airLeft = player.getRemainingAir();
+								airLeft = airLeft / 20;
+								if (airLeft == 0) {
+									player.sendMessage(ChatColor.DARK_AQUA + "[ScubaKit] " + ChatColor.RED + "YOU ARE OUT OF AIR!"); break;
+								} else {
+									player.sendMessage(ChatColor.DARK_AQUA + "[ScubaKit] " + ChatColor.GRAY + Integer.toString(airLeft) + " seconds of air remaining");	
+								}
+							}
+							playerNumber++;
+						}
+						worldNumber++;
+						playerNumber = 0;
+					}
+		        
+		    }
+		}, 60L, 300L);
+		int theFan = -1;
+		if (shit == theFan) {
+			log_It("severe", "Schedule failed. This is really bad");
+		if (getThisPlugin().getServer().getScheduler().isCurrentlyRunning(shit)) {
+			log_It("info", "Says task is running. Do we believe it?");
+			} else {
+				log_It("severe", "Task isn't running. Why?");
+			}
+		}
+		
 	} 
 	public void onDisable(){ 
 		log_It("info", "Disabled Completed"); //log us not doing anything. 
@@ -153,16 +198,6 @@ public class ScubaKit extends JavaPlugin {
 				ScubaKit.log_It("finest", "set air to default"); 
 				break;
 		}
-		
-		//set max air
-		//if (helm.getTypeId() == 86) {
-			//if helm is pumpkin and max air is not herp make it derp
-		//	player.setMaximumAir(maxAir);
-		//	ScubaKit.log_It("finer", "Set modded Max Air to " + player.getName());
-	//	} else {
-		//	player.setMaximumAir(defaultAir);
-		//	ScubaKit.log_It("finest", "Did not set modded Max Air to " + player.getName());
-		//}
 		
 	}
 	
