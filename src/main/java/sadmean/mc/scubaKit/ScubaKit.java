@@ -41,6 +41,9 @@ public class ScubaKit extends JavaPlugin {
 	public static int leatherAir = defaultAir;
 	//THESE VALUES SHOULD BE OVERWRITTEN BY CONFIG.YML
 	
+	int theFan = -1;
+	int shit;
+	
     private static ScubaKit thisPlugin = null; //I don't know what this does. Necessary for fancy log
     
 	
@@ -108,7 +111,7 @@ public class ScubaKit extends JavaPlugin {
 			//3. Values were manually set to Zero in the config. I have no idea why you would do that, but you could
 		}
 		
-		int shit = getThisPlugin().getServer().getScheduler().scheduleSyncRepeatingTask(getThisPlugin(), new Runnable() {
+		shit = getThisPlugin().getServer().getScheduler().scheduleSyncRepeatingTask(getThisPlugin(), new Runnable() {
 
 		    public void run() {
 		    	log_It("fine", "ScubaTask is on the case!");
@@ -140,19 +143,20 @@ public class ScubaKit extends JavaPlugin {
 		        
 		    }
 		}, 60L, 300L);
-		int theFan = -1;
+
 		if (shit == theFan) {
 			log_It("severe", "Schedule failed. This is really bad");
-		if (getThisPlugin().getServer().getScheduler().isCurrentlyRunning(shit)) {
-			log_It("info", "Says task is running. Do we believe it?");
-			} else {
-				log_It("severe", "Task isn't running. Why?");
-			}
 		}
-		
 	} 
-	public void onDisable(){ 
-		log_It("info", "Disabled Completed"); //log us not doing anything. 
+	
+	public void onDisable(){  
+		if (getThisPlugin().getServer().getScheduler().isCurrentlyRunning(shit)) {
+			getThisPlugin().getServer().getScheduler().cancelTask(shit);
+			log_It("info", "Disabled Completed"); 
+		} else {
+			log_It("info", "Disabled Completed"); //log us not doing anything.
+			//log_It("warning", "Disabled Completed, but with errors");
+		}
 	}
 	
 	/**
