@@ -189,49 +189,86 @@ public class ScubaKit extends JavaPlugin {
 	 */
 	public static void setAir(Player player) {
 		//lets start with a permissions check
-		if (!ignorePermissions) {
-			if (!permissionHandler.has(player, "ScubaKit.ScubaGear")) {
-				return;
-			}			
+		if (ignorePermissions) {
+			//Checks to see what the player is wearing, then adjusts their lungs accordingly.
+			ItemStack helm;
+			PlayerInventory armor;
+			
+			armor = player.getInventory();
+			helm = armor.getHelmet();
+			
+			switch (helm.getTypeId()) {
+				case 86: //pumpkin head
+					player.setMaximumAir(pumpkinAir);
+					log_It("finest", "set max air to pumpkin levels");
+					break;
+				case 310: //diamond helm 
+					player.setMaximumAir(diamondAir);
+					log_It("finest", "set max air to diamond levels");
+					break;
+				case 314: //gold helm
+					player.setMaximumAir(goldAir);
+					log_It("finest", "set max air to gold levels");
+					break;
+				case 306: //iron helm
+					player.setMaximumAir(ironAir);
+					log_It("finest", "set max air to iron levels");
+					break;
+				case 298: //leather helm
+					player.setMaximumAir(leatherAir);
+					log_It("finest", "set max air to leather levels");
+					break;
+				case 302: //chain helm
+					player.setMaximumAir(chainAir);
+					log_It("finest", "set max air to chain levels");
+					break;
+				default: //not a helm
+					player.setMaximumAir(defaultAir);
+					ScubaKit.log_It("finest", "set air to default"); 
+					break;
+			}
+		} else {
+			//permissions is turned on. check permission of each helm type before setting
+			//Checks to see what the player is wearing, then adjusts their lungs accordingly.
+			ItemStack helm;
+			PlayerInventory armor;
+			
+			armor = player.getInventory();
+			helm = armor.getHelmet();
+			
+			switch (helm.getTypeId()) {
+				case 86: //pumpkin head
+					if (permissionHandler.has(player, "ScubaKit.ScubaGear.Pumpkin")) player.setMaximumAir(pumpkinAir);
+					log_It("finest", "set max air to pumpkin levels");
+					break;
+				case 310: //diamond helm 
+					if (permissionHandler.has(player, "ScubaKit.ScubaGear.Diamond")) player.setMaximumAir(diamondAir);
+					log_It("finest", "set max air to diamond levels");
+					break;
+				case 314: //gold helm
+					if (permissionHandler.has(player, "ScubaKit.ScubaGear.Gold")) player.setMaximumAir(goldAir);
+					log_It("finest", "set max air to gold levels");
+					break;
+				case 306: //iron helm
+					if (permissionHandler.has(player, "ScubaKit.ScubaGear.Iron")) player.setMaximumAir(ironAir);
+					log_It("finest", "set max air to iron levels");
+					break;
+				case 298: //leather helm
+					if (permissionHandler.has(player, "ScubaKit.ScubaGear.Leather")) player.setMaximumAir(leatherAir);
+					log_It("finest", "set max air to leather levels");
+					break;
+				case 302: //chain helm
+					if (permissionHandler.has(player, "ScubaKit.ScubaGear.Chain")) player.setMaximumAir(chainAir);
+					log_It("finest", "set max air to chain levels");
+					break;
+				default: //not a helm
+					player.setMaximumAir(defaultAir);
+					ScubaKit.log_It("finest", "set air to default"); 
+					break;
+			}
+						
 		}
 
-		//Checks to see what the player is wearing, then adjusts their lungs accordingly.
-		ItemStack helm;
-		PlayerInventory armor;
-		
-		armor = player.getInventory();
-		helm = armor.getHelmet();
-		
-		switch (helm.getTypeId()) {
-			case 86: //pumpkin head
-				player.setMaximumAir(pumpkinAir);
-				log_It("finest", "set max air to pumpkin levels");
-				break;
-			case 310: //diamond helm 
-				player.setMaximumAir(diamondAir);
-				log_It("finest", "set max air to diamond levels");
-				break;
-			case 314: //gold helm
-				player.setMaximumAir(goldAir);
-				log_It("finest", "set max air to gold levels");
-				break;
-			case 306: //iron helm
-				player.setMaximumAir(ironAir);
-				log_It("finest", "set max air to iron levels");
-				break;
-			case 298: //leather helm
-				player.setMaximumAir(leatherAir);
-				log_It("finest", "set max air to leather levels");
-				break;
-			case 302: //chain helm
-				player.setMaximumAir(chainAir);
-				log_It("finest", "set max air to chain levels");
-				break;
-			default: //not a helm
-				player.setMaximumAir(defaultAir);
-				ScubaKit.log_It("finest", "set air to default"); 
-				break;
-		}
 		
 	}
 	
