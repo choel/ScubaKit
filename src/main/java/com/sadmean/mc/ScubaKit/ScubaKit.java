@@ -45,8 +45,12 @@ public class ScubaKit extends JavaPlugin {
 	public static int ironAir = defaultAir;
 	public static int chainAir = defaultAir;
 	public static int leatherAir = defaultAir;
-	public static boolean ignorePermissions = false;
+	public static boolean ignorePermissions = true;
+	public static boolean complexPermissions = false;
+	public static int configVersion = 1;
 	//THESE VALUES SHOULD BE OVERWRITTEN BY CONFIG.YML
+	
+	public static int latestConfigVersion = 1;
 	
 	int theFan = -1;
 	int shit;
@@ -93,6 +97,10 @@ public class ScubaKit extends JavaPlugin {
 	     		configYAML.setProperty("scubaValues.leatherAir", leatherAir);
 	     		configYAML.setProperty("scubaValues.chainAir", chainAir);
 	     		configYAML.setProperty("scubaValues.ignorePermissions", ignorePermissions);
+	     		configYAML.setProperty("scubaValues.complexPermissions", complexPermissions);
+	     		//set the current config version
+	     		configYAML.setProperty("scubaValues.configVersion", configVersion);
+	     		
 	     		if(!configYAML.save()) { //attempt to save, if fails then
 	     			log_It("severe", "Attempted to save config.yml, got saving error!"); //IT FAILED!
 	     		}
@@ -113,7 +121,28 @@ public class ScubaKit extends JavaPlugin {
 		ironAir = configYAML.getInt("scubaValues.ironAir", 0);
 		leatherAir = configYAML.getInt("scubaValues.leatherAir", 0);
 		chainAir = configYAML.getInt("scubaValues.chainAir", 0);
-		ignorePermissions = configYAML.getBoolean("scubaValues.ignorePermissions", false);
+		ignorePermissions = configYAML.getBoolean("scubaValues.ignorePermissions", true);
+		complexPermissions = configYAML.getBoolean("scubaValues.complexPermissions", false);
+		configVersion = configYAML.getInt("scubaValues.configVersion", 0);		
+			if (configVersion < latestConfigVersion) {
+				log_It("warning", "Your config is out of date. Attempting to update.");
+				if (configVersion == 0) {
+		     		configYAML.setProperty("scubaValues.defaultAir", defaultAir); 
+		     		configYAML.setProperty("scubaValues.pumpkinAir", pumpkinAir); 
+		     		configYAML.setProperty("scubaValues.diamondAir", diamondAir);
+		     		configYAML.setProperty("scubaValues.goldAir", goldAir);
+		     		configYAML.setProperty("scubaValues.ironAir", ironAir);
+		     		configYAML.setProperty("scubaValues.leatherAir", leatherAir);
+		     		configYAML.setProperty("scubaValues.chainAir", chainAir);
+		     		configYAML.setProperty("scubaValues.ignorePermissions", ignorePermissions);
+		     		configYAML.setProperty("scubaValues.complexPermissions", complexPermissions);
+		     		configYAML.setProperty("scubaValues.configVersion", 1);
+		     		if(!configYAML.save()) { //attempt to save, if fails then
+		     			log_It("severe", "Attempted to save config.yml, got saving error!"); //IT FAILED!
+		     		}
+				}
+			}
+		
 		
 		if(pumpkinAir == 0 && defaultAir == 0 && goldAir == 0 && chainAir == 0 && leatherAir == 0 && diamondAir == 0) {
 			log_It("severe", "All values reported as zero, this should never happen"); 
@@ -189,7 +218,7 @@ public class ScubaKit extends JavaPlugin {
 	 */
 	public static void setAir(Player player) {
 		//lets start with a permissions check
-		if (ignorePermissions) {
+		if (ignorePermissions || (!complexPermissions && permissionHandler.has(player, "ScubaKit.ScubaGear"))) {
 			//Checks to see what the player is wearing, then adjusts their lungs accordingly.
 			ItemStack helm;
 			PlayerInventory armor;
