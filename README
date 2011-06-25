@@ -1,5 +1,5 @@
 ***********************		//ScubaKit\\	*************************************
-			     README version 1.0
+			     README version 2.1
 
 Author: Choel (Sadmean)
 
@@ -7,7 +7,8 @@ Index:
 	1. What is ScubaKit?
 	2. How do I install ScubaKit?
 	3. How do I configure ScubaKit?
-	4. How do I contact the author?
+	4. Permissions and other plugin support?
+	5. How do I contact the author?
 
 
 1. What is ScubaKit?
@@ -24,27 +25,41 @@ Index:
 3. How do I configure ScubaKit?
 
 	open config.yml in Plugins/ScubaKit/  . It should look something like this;
+	
 scubaValues:
-
     leatherAir: 320
-
     diamondAir: 320
-
     ironAir: 320
-
     pumpkinAir: 2025
-
     chainAir: 320
-
     defaultAir: 320
-
     goldAir: 320
-
+    ignorePermissions: true
+    complexPermissions: false
+    configVersion: 1
+    
 	I know the order is a little weird ...
 	Anyway, the number listed is the number of tics you can stay underwater with that helm. 
-	I believe vanilla Minecraft's default value is 301
+	I believe vanilla Minecraft's default value is 300
+	
+	setting 'ignorePermissions' to false tells the addon to not bother checking for permissions, and just assume everyone
+	is allowed to use scubagear. complexPermissions tells the addon to check permissions for each type of helm.
+	
+	4. Permissions and other plugin support?
+	
+	permission nodes (you should already know how to use these. If you don't, set ignorePermissions to true)
+	
+    ScubaKit.ScubaGear - players can use all forms of scuba gear. This permission is ignored if complexPermissions is true
+    
+    ScubaKit.ScubaGear.Pumpkin - players can use a pumpkin to change their maximum air. This value is ignored if complexPermissions is false
+    ScubaKit.ScubaGear.Diamond - players can use a diamond helm to change their maximum air. This value is ignored if complexPermissions is false
+    ScubaKit.ScubaGear.Iron - players can use a iron helm to change their maximum air. This value is ignored if complexPermissions is false
+    ScubaKit.ScubaGear.Gold - players can use a gold helm to change their maximum air. This value is ignored if complexPermissions is false
+    ScubaKit.ScubaGear.Chain - players can use a chain helm to change their maximum air. This value is ignored if complexPermissions is false
+    ScubaKit.ScubaGear.Leather - players can use a leather helm to change their maximum air. This value is ignored if complexPermissions is false
 
-4. How do I contact the author
+
+  5. How do I contact the author
 
 	My E-mail address is sadmean@sadmean.com
 	The source for this Plugin is at https://github.com/choel/ScubaKit
