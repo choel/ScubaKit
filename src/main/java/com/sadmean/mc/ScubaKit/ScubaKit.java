@@ -81,7 +81,6 @@ public class ScubaKit extends JavaPlugin {
 		PluginManager pm = this.getServer().getPluginManager(); //register this plugin
 		pm.registerEvent(Event.Type.PLAYER_MOVE, playerListener, Event.Priority.Normal, this); //register our playerListener
 		pm.registerEvent(Event.Type.PLAYER_JOIN, playerListener, Event.Priority.Normal, this); //register our serverListener (not needed)?
-		setupPermissions(); //set up permissions yah!!!
 		log_It("info", "Enabled started");
 		new File(mainDirectory).mkdir();  //makes our directory if needed
 		if(!configFile.exists()){ //if your config does not exist then ...
@@ -143,13 +142,14 @@ public class ScubaKit extends JavaPlugin {
 				}
 			}
 		
-		
-		if(pumpkinAir == 0 && defaultAir == 0 && goldAir == 0 && chainAir == 0 && leatherAir == 0 && diamondAir == 0) {
-			log_It("severe", "All values reported as zero, this should never happen"); 
-			//if all values are zero, then the config file is 1 of 3 things
-			//1. Blank, maybe the save failed when we tried to create it?
-			//2. Does not exist, but why didn't we create it earlier in onEnable()?
-			//3. Values were manually set to Zero in the config. I have no idea why you would do that, but you could
+			setupPermissions(); //set up permissions yah!!!
+			
+			if(pumpkinAir == 0 && defaultAir == 0 && goldAir == 0 && chainAir == 0 && leatherAir == 0 && diamondAir == 0) {
+				log_It("severe", "All values reported as zero, this should never happen"); 
+				//if all values are zero, then the config file is 1 of 3 things
+				//1. Blank, maybe the save failed when we tried to create it?
+				//2. Does not exist, but why didn't we create it earlier in onEnable()?
+				//3. Values were manually set to Zero in the config. I have no idea why you would do that, but you could
 		}
 		
 		shit = getThisPlugin().getServer().getScheduler().scheduleSyncRepeatingTask(getThisPlugin(), new Runnable() {
@@ -205,7 +205,8 @@ public class ScubaKit extends JavaPlugin {
 				if (permissionsPlugin != null) {
 					this.permissionHandler = ((Permissions) permissionsPlugin).getHandler();
 				} else {
-					log_It("info", "Permission system not detected, defaulting to OP");
+					log_It("info", "Permission system not detected, ignorePermissions has be set to true");
+					ignorePermissions = true;
 				}
 			}
 		}
