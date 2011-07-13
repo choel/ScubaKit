@@ -19,6 +19,7 @@ import org.bukkit.plugin.Plugin;
 
 import com.nijiko.permissions.PermissionHandler;
 import com.nijikokun.bukkit.Permissions.Permissions;
+import com.sadmean.mc.ScubaKit.config.UpdateConfigFile;
 
 
 
@@ -50,7 +51,7 @@ public class ScubaKit extends JavaPlugin {
 	public static int configVersion = 1;
 	//THESE VALUES SHOULD BE OVERWRITTEN BY CONFIG.YML
 	
-	public static int latestConfigVersion = 1;
+	public static int latestConfigVersion = 2;
 	
 	int theFan = -1;
 	int shit;
@@ -87,22 +88,11 @@ public class ScubaKit extends JavaPlugin {
 	         try {
 	        	log_It("info", "No config defected. Attempting to create.");
 	        	configFile.createNewFile(); //... we create it then ...
-	        	Configuration configYAML = getThisPlugin().getConfiguration(); //... load the blank new file ...
-	     		configYAML.setProperty("scubaValues.defaultAir", defaultAir); //..set defaultAir
-	     		configYAML.setProperty("scubaValues.pumpkinAir", pumpkinAir); //... then set some values`
-	     		configYAML.setProperty("scubaValues.diamondAir", diamondAir);
-	     		configYAML.setProperty("scubaValues.goldAir", goldAir);
-	     		configYAML.setProperty("scubaValues.ironAir", ironAir);
-	     		configYAML.setProperty("scubaValues.leatherAir", leatherAir);
-	     		configYAML.setProperty("scubaValues.chainAir", chainAir);
-	     		configYAML.setProperty("scubaValues.ignorePermissions", ignorePermissions);
-	     		configYAML.setProperty("scubaValues.complexPermissions", complexPermissions);
-	     		//set the current config version
-	     		configYAML.setProperty("scubaValues.configVersion", configVersion);
-	     		
-	     		if(!configYAML.save()) { //attempt to save, if fails then
-	     			log_It("severe", "Attempted to save config.yml, got saving error!"); //IT FAILED!
-	     		}
+	        	if(!UpdateConfigFile.newfile()) {
+	        		log_It("severe", "Serious Error");
+	        	} else {
+	        		log_It("info", "new config file created");
+	        	}
 	         } catch (IOException ex) { 
 	             ex.printStackTrace(); //not needed anymore probably
 	         }
@@ -113,34 +103,22 @@ public class ScubaKit extends JavaPlugin {
 		//start setting values
 		Configuration configYAML = getThisPlugin().getConfiguration();
 		configYAML.load();
-		defaultAir = configYAML.getInt("scubaValues.defaultAir", 0);
-		pumpkinAir = configYAML.getInt("scubaValues.pumpkinAir", 0);
-		diamondAir = configYAML.getInt("scubaValues.diamondAir", 0);
-		goldAir = configYAML.getInt("scubaValues.goldAir", 0);
-		ironAir = configYAML.getInt("scubaValues.ironAir", 0);
-		leatherAir = configYAML.getInt("scubaValues.leatherAir", 0);
-		chainAir = configYAML.getInt("scubaValues.chainAir", 0);
-		ignorePermissions = configYAML.getBoolean("scubaValues.ignorePermissions", true);
-		complexPermissions = configYAML.getBoolean("scubaValues.complexPermissions", false);
 		configVersion = configYAML.getInt("scubaValues.configVersion", 0);		
 			if (configVersion < latestConfigVersion) {
 				log_It("warning", "Your config is out of date. Attempting to update.");
-				if (configVersion == 0) {
-		     		configYAML.setProperty("scubaValues.defaultAir", defaultAir); 
-		     		configYAML.setProperty("scubaValues.pumpkinAir", pumpkinAir); 
-		     		configYAML.setProperty("scubaValues.diamondAir", diamondAir);
-		     		configYAML.setProperty("scubaValues.goldAir", goldAir);
-		     		configYAML.setProperty("scubaValues.ironAir", ironAir);
-		     		configYAML.setProperty("scubaValues.leatherAir", leatherAir);
-		     		configYAML.setProperty("scubaValues.chainAir", chainAir);
-		     		configYAML.setProperty("scubaValues.ignorePermissions", ignorePermissions);
-		     		configYAML.setProperty("scubaValues.complexPermissions", complexPermissions);
-		     		configYAML.setProperty("scubaValues.configVersion", 1);
-		     		if(!configYAML.save()) { //attempt to save, if fails then
-		     			log_It("severe", "Attempted to save config.yml, got saving error!"); //IT FAILED!
-		     		}
+				if(!UpdateConfigFile.update()) {
+					log_It("warning", "error during update");
 				}
 			}
+			defaultAir = configYAML.getInt("scubaValues.defaultAir", 0);
+			pumpkinAir = configYAML.getInt("scubaValues.pumpkinAir", 0);
+			diamondAir = configYAML.getInt("scubaValues.diamondAir", 0);
+			goldAir = configYAML.getInt("scubaValues.goldAir", 0);
+			ironAir = configYAML.getInt("scubaValues.ironAir", 0);
+			leatherAir = configYAML.getInt("scubaValues.leatherAir", 0);
+			chainAir = configYAML.getInt("scubaValues.chainAir", 0);
+			ignorePermissions = configYAML.getBoolean("system.ignorePermissions", true);
+			complexPermissions = configYAML.getBoolean("system.complexPermissions", false);
 		
 			setupPermissions(); //set up permissions yah!!!
 			
