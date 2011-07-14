@@ -6,17 +6,22 @@ import com.sadmean.mc.ScubaKit.ScubaKit;
 
 public class UpdateConfigFile {
 	
-	public static boolean update() {
-		ScubaKit.log_It("warning", "Config update in progress");
+	public static boolean update(int oldVersion) {
+		ScubaKit.log_It("info", "Config update in progress");
 		ScubaKit.log_It("info", "Checking for config version 0");
-		if(ScubaKit.configVersion == 0) {
+		if(ScubaKit.configVersion == 0 || oldVersion == 0) {
 			ScubaKit.log_It("info", "found config version 0");
 			if(!update_from_0_to_1()) return false;
 		}
 		ScubaKit.log_It("info", "Checking for config version 1");
-		if(ScubaKit.configVersion == 1) {
+		if(ScubaKit.configVersion == 1 || oldVersion == 1) {
 			ScubaKit.log_It("info", "found config version 1");
 			if(!update_from_1_to_2()) return false;
+		}
+		ScubaKit.log_It("info", "Checking for config version 2");
+		if(ScubaKit.configVersion == 2 || oldVersion == 2) {
+			ScubaKit.log_It("info", "found config version 2");
+			if(!update_from_2_to_3()) return false;
 		}
 		return true;
 	}
@@ -45,9 +50,26 @@ public class UpdateConfigFile {
 	static boolean update_from_1_to_2() {
 		ScubaKit.log_It("info", "Attempting to update from config version 1 to config version 2");
 		Configuration configYAML = ScubaKit.getThisPlugin().getConfiguration(); 
-		configYAML.setProperty("scubaValues.configVersion", 2);
+		configYAML.setProperty("system.configVersion", 2);
+		configYAML.removeProperty("scubaValues.configVersion");
 		configYAML.setProperty("system.ignorePermissions", configYAML.getBoolean("scubaValues.ignorePermissions", ScubaKit.ignorePermissions));
  		configYAML.setProperty("system.complexPermissions", configYAML.getBoolean("scubaValues.complexPermissions", ScubaKit.complexPermissions));
+ 		if(!configYAML.save()) { //attempt to save, if fails then
+ 			ScubaKit.log_It("severe", "Attempted to save config.yml, got saving error!"); //IT FAILED!
+ 			return false;
+ 		} else {
+ 			return true;
+ 		}
+	}
+	
+	static boolean update_from_2_to_3() {
+		ScubaKit.log_It("info", "Attempting to update from config version 2 to config version 3");
+		Configuration configYAML = ScubaKit.getThisPlugin().getConfiguration(); 
+		configYAML.setProperty("system.configVersion", 3);
+		configYAML.setProperty("system.airOverridesIfHigher", ScubaKit.airOverridesIfHigher);
+		configYAML.removeProperty("scubaValues.configVersion");
+		configYAML.removeProperty("scubaValues.ignorePermissions");
+		configYAML.removeProperty("scubaValues.complexPermissions");
  		if(!configYAML.save()) { //attempt to save, if fails then
  			ScubaKit.log_It("severe", "Attempted to save config.yml, got saving error!"); //IT FAILED!
  			return false;
@@ -67,6 +89,7 @@ public class UpdateConfigFile {
  		configYAML.setProperty("scubaValues.chainAir", ScubaKit.chainAir);
  		configYAML.setProperty("system.ignorePermissions", ScubaKit.ignorePermissions);
  		configYAML.setProperty("system.complexPermissions", ScubaKit.complexPermissions);
+ 		configYAML.setProperty("system.airOverridesIfHigher", ScubaKit.airOverridesIfHigher);
  		//set the current config version
  		configYAML.setProperty("system.configVersion", ScubaKit.latestConfigVersion);
  		

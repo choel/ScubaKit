@@ -48,10 +48,11 @@ public class ScubaKit extends JavaPlugin {
 	public static int leatherAir = defaultAir;
 	public static boolean ignorePermissions = true;
 	public static boolean complexPermissions = false;
-	public static int configVersion = 1;
+	public static boolean airOverridesIfHigher = true;
+	public static int configVersion = 0;
 	//THESE VALUES SHOULD BE OVERWRITTEN BY CONFIG.YML
 	
-	public static int latestConfigVersion = 2;
+	public static int latestConfigVersion = 3;
 	
 	int theFan = -1;
 	int shit;
@@ -103,11 +104,18 @@ public class ScubaKit extends JavaPlugin {
 		//start setting values
 		Configuration configYAML = getThisPlugin().getConfiguration();
 		configYAML.load();
-		configVersion = configYAML.getInt("scubaValues.configVersion", 0);		
+		configVersion = configYAML.getInt("system.configVersion", 0);		
 			if (configVersion < latestConfigVersion) {
 				log_It("warning", "Your config is out of date. Attempting to update.");
-				if(!UpdateConfigFile.update()) {
-					log_It("warning", "error during update");
+				//check for configVersion bug introduced in 2.1.0
+				if (configYAML.getInt("scubaValues.configVersion", 5000) != 5000) {
+					if(!UpdateConfigFile.update(configYAML.getInt("scubaValues.configVersion", 5000))) {
+						log_It("warning", "error during update");
+					}
+				} else {
+					if(!UpdateConfigFile.update(configYAML.getInt("scubaValues.configVersion", 5000))) {
+						log_It("warning", "error during update");
+					}
 				}
 			}
 			defaultAir = configYAML.getInt("scubaValues.defaultAir", 0);
