@@ -1,5 +1,5 @@
 ***********************		//ScubaKit\\	*************************************
-			     README version 2.1
+			     README version 2.2
 
 Author: Choel (Sadmean)
 
@@ -34,9 +34,10 @@ scubaValues:
     chainAir: 320
     defaultAir: 320
     goldAir: 320
+system:
     ignorePermissions: true
     complexPermissions: false
-    configVersion: 1
+    configVersion: 3
     
 	I know the order is a little weird ...
 	Anyway, the number listed is the number of tics you can stay underwater with that helm. 

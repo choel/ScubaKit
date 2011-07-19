@@ -28,7 +28,14 @@ import com.sadmean.mc.ScubaKit.config.UpdateConfigFile;
  * @author Choelian
  *	ScubaKit allows players wearing a specified block on their head to 
  *	stay underwater for a different (probably larger) chunk of time.
- *
+ * 
+ * @TODO 
+ * 	HIGH PRIORITY:
+ *  	Allow config of higher default air to override lower air provided by helms
+ *  LOW PRIORITY:
+ *  	Recharge time for scubagear
+ *  	Consumables? maybe.
+ *  
  */
 public class ScubaKit extends JavaPlugin {
 	

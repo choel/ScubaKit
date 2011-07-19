@@ -67,6 +67,8 @@ public class UpdateConfigFile {
 		Configuration configYAML = ScubaKit.getThisPlugin().getConfiguration(); 
 		configYAML.setProperty("system.configVersion", 3);
 		configYAML.setProperty("system.airOverridesIfHigher", ScubaKit.airOverridesIfHigher);
+		configYAML.setProperty("restoreBreath.noHelm", ScubaKit.airOverridesIfHigher);
+		configYAML.setProperty("restoreBreath.withHelm", ScubaKit.airOverridesIfHigher);
 		configYAML.removeProperty("scubaValues.configVersion");
 		configYAML.removeProperty("scubaValues.ignorePermissions");
 		configYAML.removeProperty("scubaValues.complexPermissions");
