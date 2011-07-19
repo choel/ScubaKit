@@ -1,6 +1,5 @@
 package com.sadmean.mc.ScubaKit;
 
-import org.bukkit.ChatColor;
 import org.bukkit.entity.Player;
 import org.bukkit.event.player.PlayerJoinEvent;
 import org.bukkit.event.player.PlayerListener;
@@ -9,7 +8,6 @@ import org.bukkit.event.player.PlayerMoveEvent;
 
 public class ScubaPlayerListener extends PlayerListener {
 	
-	String chatStart = ChatColor.DARK_AQUA + "[ScubaKit] " +ChatColor.GRAY;
 	Player player;
 	String airEnder = " seconds of air remaining";
 	
@@ -25,9 +23,8 @@ public class ScubaPlayerListener extends PlayerListener {
 	}
 	
 	public static ScubaKit plugin; public ScubaPlayerListener(ScubaKit instance) { 
-		 
-        plugin = instance;
- }
+		plugin = instance;
+	}
 
 
 }

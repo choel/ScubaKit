@@ -217,7 +217,7 @@ public class ScubaKit extends JavaPlugin {
 					break;
 				default: //not a helm
 					player.setMaximumAir(defaultAir);
-					ScubaKit.log_It("finest", "set air to default"); 
+					log_It("finest", "set air to default"); 
 					break;
 			}
 		} else {
@@ -256,7 +256,7 @@ public class ScubaKit extends JavaPlugin {
 					break;
 				default: //not a helm
 					player.setMaximumAir(defaultAir);
-					ScubaKit.log_It("finest", "set air to default"); 
+					log_It("finest", "set air to default"); 
 					break;
 			}
 						
