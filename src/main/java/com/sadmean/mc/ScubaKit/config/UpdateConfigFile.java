@@ -1,105 +1,105 @@
 package com.sadmean.mc.ScubaKit.config;
 
+import java.util.Map;
+
 import org.bukkit.util.config.Configuration;
 
 import com.sadmean.mc.ScubaKit.ScubaKit;
 
 public class UpdateConfigFile {
-	
-	public static boolean update(int oldVersion) {
-		ScubaKit.log_It("info", "Config update in progress");
-		ScubaKit.log_It("info", "Checking for config version 0");
-		if(ScubaKit.configVersion == 0 || oldVersion == 0) {
-			ScubaKit.log_It("info", "found config version 0");
-			if(!update_from_0_to_1()) return false;
+		
+	public static boolean load() {
+		Configuration configYAML = ScubaKit.getThisPlugin().getConfiguration();
+		configYAML.load();
+		Map<String, Object> map = configYAML.getAll();
+		
+		//check for defaultAir, if exists. If exists, load it into plugin. Else, set from default values.
+		if(map.containsKey("scubaValues.defaultAir")) {
+			ScubaKit.defaultAir = configYAML.getInt("scubaValues.defaultAir", 0);
+		} else {
+			configYAML.setProperty("scubaValues.defaultAir", ScubaKit.defaultAir); 
 		}
-		ScubaKit.log_It("info", "Checking for config version 1");
-		if(ScubaKit.configVersion == 1 || oldVersion == 1) {
-			ScubaKit.log_It("info", "found config version 1");
-			if(!update_from_1_to_2()) return false;
+		
+		//now for pumpkin air
+		if(map.containsKey("scubaValues.pumpkinAir")) {
+			ScubaKit.pumpkinAir = configYAML.getInt("scubaValues.pumpkinAir", 0);
+		} else {
+			configYAML.setProperty("scubaValues.pumpkinAir", ScubaKit.pumpkinAir); 
 		}
-		ScubaKit.log_It("info", "Checking for config version 2");
-		if(ScubaKit.configVersion == 2 || oldVersion == 2) {
-			ScubaKit.log_It("info", "found config version 2");
-			if(!update_from_2_to_3()) return false;
+		
+		//next we check diamondAir
+		if(map.containsKey("scubaValues.diamondAir")) {
+			ScubaKit.diamondAir = configYAML.getInt("scubaValues.diamondAir", 0);
+		} else {
+			configYAML.setProperty("scubaValues.diamondAir", ScubaKit.diamondAir); 
+		}
+		
+		//goldAir
+		if(map.containsKey("scubaValues.goldAir")) {
+			ScubaKit.goldAir = configYAML.getInt("scubaValues.goldAir", 0);
+		} else {
+			configYAML.setProperty("scubaValues.goldAir", ScubaKit.goldAir); 
+		}
+		
+		//ironAir
+		if(map.containsKey("scubaValues.ironAir")) {
+			ScubaKit.ironAir = configYAML.getInt("scubaValues.ironAir", 0);
+		} else {
+			configYAML.setProperty("scubaValues.ironAir", ScubaKit.ironAir); 
+		}
+		
+		//leatherAir
+		if(map.containsKey("scubaValues.leatherAir")) {
+			ScubaKit.leatherAir = configYAML.getInt("scubaValues.leatherAir", 0);
+		} else {
+			configYAML.setProperty("scubaValues.leatherAir", ScubaKit.leatherAir); 
+		}
+		
+		//chainAir
+		if(map.containsKey("scubaValues.chainAir")) {
+			ScubaKit.chainAir = configYAML.getInt("scubaValues.chainAir", 0);
+		} else {
+			configYAML.setProperty("scubaValues.chainAir", ScubaKit.chainAir); 
+		}
+		
+		//ignorePermissions
+		if(map.containsKey("system.ignorePermissions")) {
+			ScubaKit.ignorePermissions = configYAML.getBoolean("system.ignorePermissions", true);
+		} else {
+			configYAML.setProperty("system.ignorePermissions", configYAML.getBoolean("scubaValues.ignorePermissions", ScubaKit.ignorePermissions)); 
+		}
+		
+		//complex permissions
+		if(map.containsKey("system.complexPermissions")) {
+			ScubaKit.complexPermissions = configYAML.getBoolean("system.complexPermissions", false);
+		} else {
+			configYAML.setProperty("system.complexPermissions", configYAML.getBoolean("scubaValues.complexPermissions", ScubaKit.complexPermissions)); 
+		}
+		
+		//version 0 values done
+		if(map.containsKey("system.airOverridesIfHigher")) {
+			ScubaKit.airOverridesIfHigher = configYAML.getBoolean("system.airOverridesIfHigher", false);
+		} else {
+			configYAML.setProperty("system.airOverridesIfHigher", ScubaKit.airOverridesIfHigher); 
+		}
+		
+		
+		//remove old values
+		configYAML.removeProperty("scubaValues.configVersion");
+		configYAML.removeProperty("system.configVersion");
+		configYAML.removeProperty("scubaValues.ignorePermissions");
+		configYAML.removeProperty("scubaValues.complexPermissions");
+		//check for integrity 
+		if (ScubaKit.defaultAir == -1) {
+			ScubaKit.log_It("severe", "value key map load failed. This is very bad");
+			return false;
+		}
+		
+		if(!configYAML.save()) {
+			ScubaKit.log_It("severe", "Saving error, this should never happen");
 		}
 		return true;
 	}
-
-	static boolean update_from_0_to_1() {
-		ScubaKit.log_It("info", "Attempting to update from config version 0 to config version 1");
-		Configuration configYAML = ScubaKit.getThisPlugin().getConfiguration(); //... load the blank new file 
- 		configYAML.setProperty("scubaValues.defaultAir", ScubaKit.defaultAir); 
- 		configYAML.setProperty("scubaValues.pumpkinAir", ScubaKit.pumpkinAir); 
- 		configYAML.setProperty("scubaValues.diamondAir", ScubaKit.diamondAir);
- 		configYAML.setProperty("scubaValues.goldAir", ScubaKit.goldAir);
- 		configYAML.setProperty("scubaValues.ironAir", ScubaKit.ironAir);
- 		configYAML.setProperty("scubaValues.leatherAir", ScubaKit.leatherAir);
- 		configYAML.setProperty("scubaValues.chainAir", ScubaKit.chainAir);
- 		configYAML.setProperty("scubaValues.ignorePermissions", ScubaKit.ignorePermissions);
- 		configYAML.setProperty("scubaValues.complexPermissions", ScubaKit.complexPermissions);
- 		configYAML.setProperty("scubaValues.configVersion", 1);
- 		if(!configYAML.save()) { //attempt to save, if fails then
- 			ScubaKit.log_It("severe", "Attempted to save config.yml, got saving error!"); //IT FAILED!
- 			return false;
- 		} else {
- 			return true;
- 		}
-	}
 	
-	static boolean update_from_1_to_2() {
-		ScubaKit.log_It("info", "Attempting to update from config version 1 to config version 2");
-		Configuration configYAML = ScubaKit.getThisPlugin().getConfiguration(); 
-		configYAML.setProperty("system.configVersion", 2);
-		configYAML.removeProperty("scubaValues.configVersion");
-		configYAML.setProperty("system.ignorePermissions", configYAML.getBoolean("scubaValues.ignorePermissions", ScubaKit.ignorePermissions));
- 		configYAML.setProperty("system.complexPermissions", configYAML.getBoolean("scubaValues.complexPermissions", ScubaKit.complexPermissions));
- 		if(!configYAML.save()) { //attempt to save, if fails then
- 			ScubaKit.log_It("severe", "Attempted to save config.yml, got saving error!"); //IT FAILED!
- 			return false;
- 		} else {
- 			return true;
- 		}
-	}
 	
-	static boolean update_from_2_to_3() {
-		ScubaKit.log_It("info", "Attempting to update from config version 2 to config version 3");
-		Configuration configYAML = ScubaKit.getThisPlugin().getConfiguration(); 
-		configYAML.setProperty("system.configVersion", 3);
-		configYAML.setProperty("system.airOverridesIfHigher", ScubaKit.airOverridesIfHigher);
-		configYAML.setProperty("restoreBreath.noHelm", ScubaKit.airOverridesIfHigher);
-		configYAML.setProperty("restoreBreath.withHelm", ScubaKit.airOverridesIfHigher);
-		configYAML.removeProperty("scubaValues.configVersion");
-		configYAML.removeProperty("scubaValues.ignorePermissions");
-		configYAML.removeProperty("scubaValues.complexPermissions");
- 		if(!configYAML.save()) { //attempt to save, if fails then
- 			ScubaKit.log_It("severe", "Attempted to save config.yml, got saving error!"); //IT FAILED!
- 			return false;
- 		} else {
- 			return true;
- 		}
-	}
-	
-	public static boolean newfile() {
-    	Configuration configYAML = ScubaKit.getThisPlugin().getConfiguration(); //... load the blank new file ...
- 		configYAML.setProperty("scubaValues.defaultAir", ScubaKit.defaultAir); //..set defaultAir
- 		configYAML.setProperty("scubaValues.pumpkinAir", ScubaKit.pumpkinAir); //... then set some values`
- 		configYAML.setProperty("scubaValues.diamondAir", ScubaKit.diamondAir);
- 		configYAML.setProperty("scubaValues.goldAir", ScubaKit.goldAir);
- 		configYAML.setProperty("scubaValues.ironAir", ScubaKit.ironAir);
- 		configYAML.setProperty("scubaValues.leatherAir", ScubaKit.leatherAir);
- 		configYAML.setProperty("scubaValues.chainAir", ScubaKit.chainAir);
- 		configYAML.setProperty("system.ignorePermissions", ScubaKit.ignorePermissions);
- 		configYAML.setProperty("system.complexPermissions", ScubaKit.complexPermissions);
- 		configYAML.setProperty("system.airOverridesIfHigher", ScubaKit.airOverridesIfHigher);
- 		//set the current config version
- 		configYAML.setProperty("system.configVersion", ScubaKit.latestConfigVersion);
- 		
- 		if(!configYAML.save()) { //attempt to save, if fails then
- 			ScubaKit.log_It("severe", "Attempted to save config.yml, got saving error!"); //IT FAILED!
- 			return false;
- 		} else {
- 			return true;
- 		}
-	}
 }

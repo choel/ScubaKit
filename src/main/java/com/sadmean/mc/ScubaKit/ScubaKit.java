@@ -10,7 +10,6 @@ import org.bukkit.World;
 import org.bukkit.plugin.PluginDescriptionFile;
 import org.bukkit.plugin.PluginManager;
 import org.bukkit.plugin.java.JavaPlugin;
-import org.bukkit.util.config.Configuration;
 import org.bukkit.entity.Player;
 import org.bukkit.event.Event;
 import org.bukkit.inventory.ItemStack;
@@ -96,11 +95,6 @@ public class ScubaKit extends JavaPlugin {
 	         try {
 	        	log_It("info", "No config defected. Attempting to create.");
 	        	configFile.createNewFile(); //... we create it then ...
-	        	if(!UpdateConfigFile.newfile()) {
-	        		log_It("severe", "Serious Error");
-	        	} else {
-	        		log_It("info", "new config file created");
-	        	}
 	         } catch (IOException ex) { 
 	             ex.printStackTrace(); //not needed anymore probably
 	         }
@@ -109,40 +103,16 @@ public class ScubaKit extends JavaPlugin {
 			//it does exist?
 		}
 		//start setting values
-		Configuration configYAML = getThisPlugin().getConfiguration();
-		configYAML.load();
-		configVersion = configYAML.getInt("system.configVersion", 0);		
-			if (configVersion < latestConfigVersion) {
-				log_It("warning", "Your config is out of date. Attempting to update.");
-				//check for configVersion bug introduced in 2.1.0
-				if (configYAML.getInt("scubaValues.configVersion", 5000) != 5000) {
-					if(!UpdateConfigFile.update(configYAML.getInt("scubaValues.configVersion", 5000))) {
-						log_It("warning", "error during update");
-					}
-				} else {
-					if(!UpdateConfigFile.update(configYAML.getInt("scubaValues.configVersion", 5000))) {
-						log_It("warning", "error during update");
-					}
-				}
-			}
-			defaultAir = configYAML.getInt("scubaValues.defaultAir", 0);
-			pumpkinAir = configYAML.getInt("scubaValues.pumpkinAir", 0);
-			diamondAir = configYAML.getInt("scubaValues.diamondAir", 0);
-			goldAir = configYAML.getInt("scubaValues.goldAir", 0);
-			ironAir = configYAML.getInt("scubaValues.ironAir", 0);
-			leatherAir = configYAML.getInt("scubaValues.leatherAir", 0);
-			chainAir = configYAML.getInt("scubaValues.chainAir", 0);
-			ignorePermissions = configYAML.getBoolean("system.ignorePermissions", true);
-			complexPermissions = configYAML.getBoolean("system.complexPermissions", false);
+		UpdateConfigFile.load();
 		
-			setupPermissions(); //set up permissions yah!!!
+		setupPermissions(); //set up permissions yah!!!
 			
-			if(pumpkinAir == 0 && defaultAir == 0 && goldAir == 0 && chainAir == 0 && leatherAir == 0 && diamondAir == 0) {
-				log_It("severe", "All values reported as zero, this should never happen"); 
-				//if all values are zero, then the config file is 1 of 3 things
-				//1. Blank, maybe the save failed when we tried to create it?
-				//2. Does not exist, but why didn't we create it earlier in onEnable()?
-				//3. Values were manually set to Zero in the config. I have no idea why you would do that, but you could
+		if(pumpkinAir == 0 && defaultAir == 0 && goldAir == 0 && chainAir == 0 && leatherAir == 0 && diamondAir == 0) {
+			log_It("severe", "All values reported as zero, this should never happen"); 
+			//if all values are zero, then the config file is 1 of 3 things
+			//1. Blank, maybe the save failed when we tried to create it?
+			//2. Does not exist, but why didn't we create it earlier in onEnable()?
+			//3. Values were manually set to Zero in the config. I have no idea why you would do that, but you could
 		}
 		
 		shit = getThisPlugin().getServer().getScheduler().scheduleSyncRepeatingTask(getThisPlugin(), new Runnable() {
