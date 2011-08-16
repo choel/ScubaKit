@@ -52,9 +52,11 @@ public class ScubaKit extends JavaPlugin {
 	public static int ironAir = defaultAir;
 	public static int chainAir = defaultAir;
 	public static int leatherAir = defaultAir;
+	public static int blocksGlassAir = defaultAir;
 	public static boolean ignorePermissions = true;
 	public static boolean complexPermissions = false;
 	public static boolean airOverridesIfHigher = true;
+	public static boolean blockHatInstalled = false;
 	public static int configVersion = 0;
 	//THESE VALUES SHOULD BE OVERWRITTEN BY CONFIG.YML
 	
@@ -215,6 +217,12 @@ public class ScubaKit extends JavaPlugin {
 					player.setMaximumAir(chainAir);
 					log_It("finest", "set max air to chain levels");
 					break;
+				case 20:
+					if(blockHatInstalled) {
+						player.setMaximumAir(blocksGlassAir);
+						log_It("finest", "set max air to block.glass levels");
+					}
+					break;
 				default: //not a helm
 					player.setMaximumAir(defaultAir);
 					log_It("finest", "set air to default"); 
@@ -253,6 +261,12 @@ public class ScubaKit extends JavaPlugin {
 				case 302: //chain helm
 					if (permissionHandler.has(player, "ScubaKit.ScubaGear.Chain")) player.setMaximumAir(chainAir);
 					log_It("finest", "set max air to chain levels");
+					break;
+				case 20:
+					if(blockHatInstalled) {
+						player.setMaximumAir(blocksGlassAir);
+						log_It("finest", "set max air to block.glass levels");
+					}
 					break;
 				default: //not a helm
 					player.setMaximumAir(defaultAir);

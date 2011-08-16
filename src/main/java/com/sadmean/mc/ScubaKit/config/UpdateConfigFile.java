@@ -75,7 +75,7 @@ public class UpdateConfigFile {
 		} else {
 			configYAML.setProperty("system.complexPermissions", configYAML.getBoolean("scubaValues.complexPermissions", ScubaKit.complexPermissions)); 
 		}
-		
+				
 		//version 0 values done
 		if(map.containsKey("system.airOverridesIfHigher")) {
 			ScubaKit.airOverridesIfHigher = configYAML.getBoolean("system.airOverridesIfHigher", false);
@@ -83,12 +83,28 @@ public class UpdateConfigFile {
 			configYAML.setProperty("system.airOverridesIfHigher", ScubaKit.airOverridesIfHigher); 
 		}
 		
+		//blockhat integration
+		if(map.containsKey("system.blockHatInstalled")) {
+			ScubaKit.blockHatInstalled = configYAML.getBoolean("system.blockHatInstalled", false);
+		} else {
+			configYAML.setProperty("system.blockHatInstalled", ScubaKit.blockHatInstalled); 
+		}
+		
+		if(ScubaKit.blockHatInstalled) {
+			//block hat settings start
+			if(map.containsKey("scubaValues.blocks.GlassAir")) {
+				ScubaKit.blocksGlassAir = configYAML.getInt("scubaValues.blocks.GlassAir", 0);
+			} else {
+				configYAML.setProperty("scubaValues.blocks.Glass", ScubaKit.blocksGlassAir); 
+			}
+		}
 		
 		//remove old values
 		configYAML.removeProperty("scubaValues.configVersion");
 		configYAML.removeProperty("system.configVersion");
 		configYAML.removeProperty("scubaValues.ignorePermissions");
 		configYAML.removeProperty("scubaValues.complexPermissions");
+		//configYAML.removeProperty("system.complexPermissions");
 		//check for integrity 
 		if (ScubaKit.defaultAir == -1) {
 			ScubaKit.log_It("severe", "value key map load failed. This is very bad");
@@ -97,6 +113,7 @@ public class UpdateConfigFile {
 		
 		if(!configYAML.save()) {
 			ScubaKit.log_It("severe", "Saving error, this should never happen");
+			return false;
 		}
 		return true;
 	}

@@ -1,5 +1,5 @@
 ***********************		//ScubaKit\\	*************************************
-			     README version 2.2
+			     README version 4
 
 Author: Choel (Sadmean)
 
@@ -9,6 +9,7 @@ Index:
 	3. How do I configure ScubaKit?
 	4. Permissions and other plugin support?
 	5. How do I contact the author?
+
 
 
 1. What is ScubaKit?
@@ -36,21 +37,23 @@ scubaValues:
     goldAir: 320
 system:
     ignorePermissions: true
-    complexPermissions: false
-    configVersion: 3
+    blockHatInstalled: false
+
     
 	I know the order is a little weird ...
 	Anyway, the number listed is the number of tics you can stay underwater with that helm. 
 	I believe vanilla Minecraft's default value is 300
 	
 	setting 'ignorePermissions' to false tells the addon to not bother checking for permissions, and just assume everyone
-	is allowed to use scubagear. complexPermissions tells the addon to check permissions for each type of helm.
+	is allowed to use scubagear. 
 	
-	4. Permissions and other plugin support?
+4. Permissions and other plugin support?
 	
 	permission nodes (you should already know how to use these. If you don't, set ignorePermissions to true)
 	
-    ScubaKit.ScubaGear - players can use all forms of scuba gear. This permission is ignored if complexPermissions is true
+    ScubaKit.ScubaGear.* - players can use all forms of scuba gear. 
+    
+    or you can get specific ...
     
     ScubaKit.ScubaGear.Pumpkin - players can use a pumpkin to change their maximum air. This value is ignored if complexPermissions is false
     ScubaKit.ScubaGear.Diamond - players can use a diamond helm to change their maximum air. This value is ignored if complexPermissions is false
@@ -59,8 +62,10 @@ system:
     ScubaKit.ScubaGear.Chain - players can use a chain helm to change their maximum air. This value is ignored if complexPermissions is false
     ScubaKit.ScubaGear.Leather - players can use a leather helm to change their maximum air. This value is ignored if complexPermissions is false
 
+  BlockHat. 
+  This mod should work well with blockhat. Just set blockHatInstalled to true, and the plugin will add settings for other kinds of blocks.
 
-  5. How do I contact the author
+ 5. How do I contact the author
 
 	My E-mail address is sadmean@sadmean.com
 	The source for this Plugin is at https://github.com/choel/ScubaKit
