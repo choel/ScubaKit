@@ -83,6 +83,12 @@ public class UpdateConfigFile {
 			configYAML.setProperty("system.airOverridesIfHigher", ScubaKit.airOverridesIfHigher); 
 		}
 		
+		if(map.containsKey("system.debugLogs")) {
+			ScubaKit.debugLogs = configYAML.getBoolean("system.debugLogs", false);
+		} else {
+			configYAML.setProperty("system.debugLogs", ScubaKit.debugLogs); 
+		}
+				
 		//blockhat integration
 		if(map.containsKey("system.blockHatInstalled")) {
 			ScubaKit.blockHatInstalled = configYAML.getBoolean("system.blockHatInstalled", false);

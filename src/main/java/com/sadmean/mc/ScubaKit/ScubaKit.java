@@ -53,6 +53,7 @@ public class ScubaKit extends JavaPlugin {
 	public static int chainAir = defaultAir;
 	public static int leatherAir = defaultAir;
 	public static int blocksGlassAir = defaultAir;
+	public static boolean debugLogs = false;
 	public static boolean ignorePermissions = true;
 	public static boolean complexPermissions = false;
 	public static boolean airOverridesIfHigher = true;
@@ -311,9 +312,9 @@ public class ScubaKit extends JavaPlugin {
 		
 	
 		switch (level_int) {
-		case 0: log.finest(fullName + message); break; //for people who like logs in the hexabytes
-		case 1: log.finer(fullName + message); break; //for people who like log file sizes in the petabytes
-		case 2: log.fine(fullName + message); break; //for people who like log file sizes in the terabytes
+		case 0: if(debugLogs) log.finest(fullName + message); break; //for people who like logs in the hexabytes
+		case 1: if(debugLogs) log.finer(fullName + message); break; //for people who like log file sizes in the petabytes
+		case 2: if(debugLogs) log.fine(fullName + message); break; //for people who like log file sizes in the terabytes
 		case 3: log.info(fullName + message); break; //for people who like log file sizes in the gigabytes
 		case 4: log.warning(fullName + message); break; //for people who like log file sizes in the megabytes
 		case 5: log.severe(fullName + message); break; //for people who like log file sizes in the kilobytes
