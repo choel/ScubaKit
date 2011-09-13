@@ -52,14 +52,118 @@ public class ScubaKit extends JavaPlugin {
 	public static int ironAir = defaultAir;
 	public static int chainAir = defaultAir;
 	public static int leatherAir = defaultAir;
-	public static int blocksGlassAir = defaultAir;
 	public static boolean debugLogs = false;
 	public static boolean ignorePermissions = true;
 	public static boolean complexPermissions = false;
 	public static boolean airOverridesIfHigher = true;
 	public static boolean blockHatInstalled = false;
+	public static boolean firstRun = true;
 	public static int configVersion = 0;
+	public static boolean SuperPerms = true;
+	//Blockhat settings here:
+	public static int block1Air = defaultAir;
+	public static int block2Air = defaultAir;
+	public static int block3Air = defaultAir;
+	public static int block4Air = defaultAir;
+	public static int block5Air = defaultAir;
+	public static int block6Air = defaultAir;
+	public static int block7Air = defaultAir;
+	public static int block8Air = defaultAir;
+	public static int block9Air = defaultAir;
+	public static int block10Air = defaultAir;
+	public static int block11Air = defaultAir;
+	public static int block12Air = defaultAir;
+	public static int block13Air = defaultAir;
+	public static int block14Air = defaultAir;
+	public static int block15Air = defaultAir;
+	public static int block16Air = defaultAir;
+	public static int block17Air = defaultAir;
+	public static int block18Air = defaultAir;
+	public static int block19Air = defaultAir;
+	public static int block20Air = defaultAir;
+	public static int block21Air = defaultAir;
+	public static int block22Air = defaultAir;
+	public static int block23Air = defaultAir;
+	public static int block24Air = defaultAir;
+	public static int block25Air = defaultAir;
+	public static int block26Air = defaultAir;
+	public static int block27Air = defaultAir;
+	public static int block28Air = defaultAir;
+	public static int block29Air = defaultAir;
+	public static int block30Air = defaultAir;
+	public static int block31Air = defaultAir;
+	public static int block32Air = defaultAir;
+	public static int block33Air = defaultAir;
+	public static int block34Air = defaultAir;
+	public static int block35Air = defaultAir;
+	public static int block38Air = defaultAir;
+	public static int block36Air = defaultAir;
+	public static int block37Air = defaultAir;
+	public static int block39Air = defaultAir;
+	public static int block40Air = defaultAir;
+	public static int block41Air = defaultAir;
+	public static int block42Air = defaultAir;
+	public static int block43Air = defaultAir;
+	public static int block44Air = defaultAir;
+	public static int block45Air = defaultAir;
+	public static int block46Air = defaultAir;
+	public static int block47Air = defaultAir;
+	public static int block48Air = defaultAir;
+	public static int block49Air = defaultAir;
+	public static int block50Air = defaultAir;
+	public static int block51Air = defaultAir;
+	public static int block52Air = defaultAir;
+	public static int block53Air = defaultAir;
+	public static int block54Air = defaultAir;
+	public static int block55Air = defaultAir;
+	public static int block56Air = defaultAir;
+	public static int block57Air = defaultAir;
+	public static int block58Air = defaultAir;
+	public static int block59Air = defaultAir;
+	public static int block60Air = defaultAir;
+	public static int block61Air = defaultAir;
+	public static int block62Air = defaultAir;
+	public static int block63Air = defaultAir;
+	public static int block64Air = defaultAir;
+	public static int block65Air = defaultAir;
+	public static int block66Air = defaultAir;
+	public static int block67Air = defaultAir;
+	public static int block68Air = defaultAir;
+	public static int block69Air = defaultAir;
+	public static int block70Air = defaultAir;
+	public static int block71Air = defaultAir;
+	public static int block72Air = defaultAir;
+	public static int block73Air = defaultAir;
+	public static int block74Air = defaultAir;
+	public static int block75Air = defaultAir;
+	public static int block76Air = defaultAir;
+	public static int block77Air = defaultAir;
+	public static int block78Air = defaultAir;
+	public static int block79Air = defaultAir;
+	public static int block80Air = defaultAir;
+	public static int block81Air = defaultAir;
+	public static int block82Air = defaultAir;
+	public static int block83Air = defaultAir;
+	public static int block84Air = defaultAir;
+	public static int block85Air = defaultAir;
+	public static int block86Air = defaultAir;
+	public static int block87Air = defaultAir;
+	public static int block88Air = defaultAir;
+	public static int block89Air = defaultAir;
+	public static int block90Air = defaultAir;
+	public static int block91Air = defaultAir;
+	public static int block92Air = defaultAir;
+	public static int block93Air = defaultAir;
+	public static int block94Air = defaultAir;
+	public static int block95Air = defaultAir;
+	public static int block96Air = defaultAir;
+	public static int block97Air = defaultAir;
+	public static int block98Air = defaultAir;
+	public static int block99Air = defaultAir;
+	public static int block100Air = defaultAir;
 	//THESE VALUES SHOULD BE OVERWRITTEN BY CONFIG.YML
+	
+	
 	
 	public static int latestConfigVersion = 3;
 	
@@ -107,6 +211,16 @@ public class ScubaKit extends JavaPlugin {
 		}
 		//start setting values
 		UpdateConfigFile.load();
+		if (firstRun) {
+			UpdateConfigFile.firstRun();
+			log_It("warning", "This appears to be your first run of ScubaKit 3.x, Please note that some things have changed since ScubaKit 2.x.");
+			log_It("warning", "1. The simple permission system is gone. If any players had the node ScubaKit.ScubaGear, it must be replaced with ");
+			log_It("warning", "ScubaKit.ScubaGear.*");
+			log_It("warning", "2. If you used blockHat or simmilar mod, your scubakit settings related to those mods have been rearranged, please go check them now");
+			log_It("warning", "3. We now support SuperPerms, which is enabled by default. If you want to use a legacy permissions plugin, please set SuperPerms to false in the config file.");
+		} else {
+			log_It("info", "Remember to update any permissions nodes of ScubaKit.ScubaGear to ScubaKit.ScubaGear.*");
+		}
 		
 		setupPermissions(); //set up permissions yah!!!
 			
@@ -167,6 +281,7 @@ public class ScubaKit extends JavaPlugin {
 	
 	private void setupPermissions() {
 		Plugin permissionsPlugin = this.getServer().getPluginManager().getPlugin("Permissions");
+		if(!SuperPerms) {
 			if (this.permissionHandler == null) {
 				if (permissionsPlugin != null) {
 					this.permissionHandler = ((Permissions) permissionsPlugin).getHandler();
@@ -175,7 +290,32 @@ public class ScubaKit extends JavaPlugin {
 					ignorePermissions = true;
 				}
 			}
+		} else {
+			log_It("info", "SuperPerms is set to true, aborting legacy permissions hook");
 		}
+	}
+	
+	public static boolean permCheck(Player player, String perm) {
+		if (ignorePermissions) {
+			return true;
+		}
+		if(SuperPerms) {
+			if(player.hasPermission(perm)) {
+				return true;
+			} else {
+				return false;
+			}
+		} else {
+			//legacy permissions support
+			if(permissionHandler.has(player, perm)) {
+				return true;
+			} else {
+				return false;
+			}
+		}
+		
+		
+	}
 
 	
 	/**
@@ -185,15 +325,42 @@ public class ScubaKit extends JavaPlugin {
 	 */
 	public static void setAir(Player player) {
 		//lets start with a permissions check
-		if (ignorePermissions || (!complexPermissions && permissionHandler.has(player, "ScubaKit.ScubaGear"))) {
+		String typeID;
+		ItemStack helm;
+		PlayerInventory armor;
+		armor = player.getInventory();
+		helm = armor.getHelmet();
+		switch (helm.getTypeId()) {
+			case 86: //pumpkin
+				typeID = "Pumpkin";
+				break;
+			case 310: //diamond
+				typeID = "Diamond";
+				break;
+			case 314:
+				typeID = "Gold";
+				break;
+			case 306:
+				typeID = "Iron";
+				break;
+			case 298:
+				typeID = "Leather";
+				break;
+			case 302:
+				typeID = "Chain";
+				break;
+			default:
+				typeID = Integer.toString(helm.getTypeId());
+		}
+		
+		if (permCheck(player, "ScubaKit.ScubaGear." + typeID)) {
 			//Checks to see what the player is wearing, then adjusts their lungs accordingly.
-			ItemStack helm;
-			PlayerInventory armor;
-			
-			armor = player.getInventory();
-			helm = armor.getHelmet();
-			
+						
 			switch (helm.getTypeId()) {
+				case 0: //speed fix? we'll see
+					player.setMaximumAir(defaultAir);
+					log_It("finest", "set max air to default levels");
+					break;
 				case 86: //pumpkin head
 					player.setMaximumAir(pumpkinAir);
 					log_It("finest", "set max air to pumpkin levels");
@@ -218,63 +385,69 @@ public class ScubaKit extends JavaPlugin {
 					player.setMaximumAir(chainAir);
 					log_It("finest", "set max air to chain levels");
 					break;
-				case 20:
+				//start blockhat stuff.
+				case 1:
 					if(blockHatInstalled) {
-						player.setMaximumAir(blocksGlassAir);
-						log_It("finest", "set max air to block.glass levels");
+						player.setMaximumAir(block1Air);
+						log_It("finest", "set max air to block.1 levels");
+					} else {
+						player.setMaximumAir(defaultAir);
+					}
+				case 2:
+					if(blockHatInstalled) {
+						player.setMaximumAir(block2Air);
+						log_It("finest", "set max air to block.2 levels");
+					} else {
+						player.setMaximumAir(defaultAir);
 					}
 					break;
-				default: //not a helm
+				case 3:
+					if(blockHatInstalled) {
+						player.setMaximumAir(block3Air);
+						log_It("finest", "set max air to block.3 levels");
+					} else {
+						player.setMaximumAir(defaultAir);
+					}
+					break;
+				case 4:
+					if(blockHatInstalled) {
+						player.setMaximumAir(block4Air);
+						log_It("finest", "set max air to block.4 levels");
+					} else {
+						player.setMaximumAir(defaultAir);
+					}
+					break;
+				case 5:
+					if(blockHatInstalled) {
+						player.setMaximumAir(block5Air);
+						log_It("finest", "set max air to block.5 levels");
+					} else {
+						player.setMaximumAir(defaultAir);
+					}
+					break;
+				case 6:
+					if(blockHatInstalled) {
+						player.setMaximumAir(block6Air);
+						log_It("finest", "set max air to block.6 levels");
+					} else {
+						player.setMaximumAir(defaultAir);
+					}
+					break;
+				case 20:
+					if(blockHatInstalled) {
+						player.setMaximumAir(block20Air);
+						log_It("finest", "set max air to block.20 levels");
+					} else {
+						player.setMaximumAir(defaultAir);
+					}
+					break;
+				default: //not a configured helm
 					player.setMaximumAir(defaultAir);
 					log_It("finest", "set air to default"); 
 					break;
 			}
 		} else {
-			//permissions is turned on. check permission of each helm type before setting
-			//Checks to see what the player is wearing, then adjusts their lungs accordingly.
-			ItemStack helm;
-			PlayerInventory armor;
-			
-			armor = player.getInventory();
-			helm = armor.getHelmet();
-			
-			switch (helm.getTypeId()) {
-				case 86: //pumpkin head
-					if (permissionHandler.has(player, "ScubaKit.ScubaGear.Pumpkin")) player.setMaximumAir(pumpkinAir);
-					log_It("finest", "set max air to pumpkin levels");
-					break;
-				case 310: //diamond helm 
-					if (permissionHandler.has(player, "ScubaKit.ScubaGear.Diamond")) player.setMaximumAir(diamondAir);
-					log_It("finest", "set max air to diamond levels");
-					break;
-				case 314: //gold helm
-					if (permissionHandler.has(player, "ScubaKit.ScubaGear.Gold")) player.setMaximumAir(goldAir);
-					log_It("finest", "set max air to gold levels");
-					break;
-				case 306: //iron helm
-					if (permissionHandler.has(player, "ScubaKit.ScubaGear.Iron")) player.setMaximumAir(ironAir);
-					log_It("finest", "set max air to iron levels");
-					break;
-				case 298: //leather helm
-					if (permissionHandler.has(player, "ScubaKit.ScubaGear.Leather")) player.setMaximumAir(leatherAir);
-					log_It("finest", "set max air to leather levels");
-					break;
-				case 302: //chain helm
-					if (permissionHandler.has(player, "ScubaKit.ScubaGear.Chain")) player.setMaximumAir(chainAir);
-					log_It("finest", "set max air to chain levels");
-					break;
-				case 20:
-					if(blockHatInstalled) {
-						player.setMaximumAir(blocksGlassAir);
-						log_It("finest", "set max air to block.glass levels");
-					}
-					break;
-				default: //not a helm
-					player.setMaximumAir(defaultAir);
-					log_It("finest", "set air to default"); 
-					break;
-			}
-						
+			//do nothing because those code is NO LONGER NEEDED!						
 		}
 
 		

@@ -1,5 +1,132 @@
 name: ScubaKit
 main: com.sadmean.mc.ScubaKit.ScubaKit
-version: 2.1.7
+version: 3.0.0
 author: Choelian
 softdepend: [Permissions]
+permissions:
+    ScbuaKit.ScubaGear.*:
+        description: Gives access to all scubagear
+        children:
+            ScubaKit.ScubaGear.Pumpkin: true
+            ScubaKit.ScubaGear.Diamond: true
+            ScubaKit.ScubaGear.Iron: true
+            ScubaKit.ScubaGear.Gold: true
+            ScubaKit.ScubaGear.Chain: true
+            ScubaKit.ScubaGear.Leather: true
+            ScubaKit.ScubaGear.1: true
+            ScubaKit.ScubaGear.2: true
+            ScubaKit.ScubaGear.3: true
+            ScubaKit.ScubaGear.4: true
+            ScubaKit.ScubaGear.5: true
+            ScubaKit.ScubaGear.6: true
+            ScubaKit.ScubaGear.7: true
+            ScubaKit.ScubaGear.8: true
+            ScubaKit.ScubaGear.9: true
+            ScubaKit.ScubaGear.10: true
+            ScubaKit.ScubaGear.20: true
+            ScubaKit.ScubaGear.30: true
+            ScubaKit.ScubaGear.40: true
+            ScubaKit.ScubaGear.50: true
+            ScubaKit.ScubaGear.60: true
+            ScubaKit.ScubaGear.70: true
+            ScubaKit.ScubaGear.80: true
+            ScubaKit.ScubaGear.90: true
+            ScubaKit.ScubaGear.11: true
+            ScubaKit.ScubaGear.21: true
+            ScubaKit.ScubaGear.31: true
+            ScubaKit.ScubaGear.41: true
+            ScubaKit.ScubaGear.51: true
+            ScubaKit.ScubaGear.61: true
+            ScubaKit.ScubaGear.71: true
+            ScubaKit.ScubaGear.81: true
+            ScubaKit.ScubaGear.91: true
+            ScubaKit.ScubaGear.12: true
+            ScubaKit.ScubaGear.22: true
+            ScubaKit.ScubaGear.32: true
+            ScubaKit.ScubaGear.42: true
+            ScubaKit.ScubaGear.52: true
+            ScubaKit.ScubaGear.62: true
+            ScubaKit.ScubaGear.72: true
+            ScubaKit.ScubaGear.82: true
+            ScubaKit.ScubaGear.92: true
+            ScubaKit.ScubaGear.13: true
+            ScubaKit.ScubaGear.23: true
+            ScubaKit.ScubaGear.33: true
+            ScubaKit.ScubaGear.43: true
+            ScubaKit.ScubaGear.53: true
+            ScubaKit.ScubaGear.63: true
+            ScubaKit.ScubaGear.73: true
+            ScubaKit.ScubaGear.83: true
+            ScubaKit.ScubaGear.93: true
+            ScubaKit.ScubaGear.14: true
+            ScubaKit.ScubaGear.24: true
+            ScubaKit.ScubaGear.34: true
+            ScubaKit.ScubaGear.44: true
+            ScubaKit.ScubaGear.54: true
+            ScubaKit.ScubaGear.64: true
+            ScubaKit.ScubaGear.74: true
+            ScubaKit.ScubaGear.84: true
+            ScubaKit.ScubaGear.94: true
+            ScubaKit.ScubaGear.15: true
+            ScubaKit.ScubaGear.25: true
+            ScubaKit.ScubaGear.35: true
+            ScubaKit.ScubaGear.45: true
+            ScubaKit.ScubaGear.55: true
+            ScubaKit.ScubaGear.65: true
+            ScubaKit.ScubaGear.75: true
+            ScubaKit.ScubaGear.85: true
+            ScubaKit.ScubaGear.95: true
+            ScubaKit.ScubaGear.16: true
+            ScubaKit.ScubaGear.26: true
+            ScubaKit.ScubaGear.36: true
+            ScubaKit.ScubaGear.46: true
+            ScubaKit.ScubaGear.56: true
+            ScubaKit.ScubaGear.66: true
+            ScubaKit.ScubaGear.76: true
+            ScubaKit.ScubaGear.86: true
+            ScubaKit.ScubaGear.96: true
+            ScubaKit.ScubaGear.17: true
+            ScubaKit.ScubaGear.27: true
+            ScubaKit.ScubaGear.37: true
+            ScubaKit.ScubaGear.47: true
+            ScubaKit.ScubaGear.57: true
+            ScubaKit.ScubaGear.67: true
+            ScubaKit.ScubaGear.77: true
+            ScubaKit.ScubaGear.87: true
+            ScubaKit.ScubaGear.97: true
+            ScubaKit.ScubaGear.18: true
+            ScubaKit.ScubaGear.28: true
+            ScubaKit.ScubaGear.38: true
+            ScubaKit.ScubaGear.48: true
+            ScubaKit.ScubaGear.58: true
+            ScubaKit.ScubaGear.68: true
+            ScubaKit.ScubaGear.78: true
+            ScubaKit.ScubaGear.88: true
+            ScubaKit.ScubaGear.98: true
+            ScubaKit.ScubaGear.19: true
+            ScubaKit.ScubaGear.29: true
+            ScubaKit.ScubaGear.39: true
+            ScubaKit.ScubaGear.49: true
+            ScubaKit.ScubaGear.59: true
+            ScubaKit.ScubaGear.69: true
+            ScubaKit.ScubaGear.79: true
+            ScubaKit.ScubaGear.89: true
+            ScubaKit.ScubaGear.99: true
+    ScubaKit.ScubaGear.Pumpkin:
+        description: Allows you to use a pumpkin as ScubaGear
+        default: op
+    ScubaKit.ScubaGear.Diamond:
+        description: Allows you to use a diamond helm as ScubaGear
+        default: op
+    ScubaKit.ScubaGear.Iron:
+        description: Allows you to use a iron helm as ScubaGear
+        default: op
+    ScubaKit.ScubaGear.Gold:
+        description: Allows you to use a gold helm as ScubaGear
+        default: op
+    ScubaKit.ScubaGear.Chain:
+        description: Allows you to use a chain helm as ScubaGear
+        default: op
+    ScubaKit.ScubaGear.Leather:
+        description: Allows you to use a leather helm as ScubaGear
+        default: op

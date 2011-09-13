@@ -1,5 +1,5 @@
 ***********************		//ScubaKit\\	*************************************
-			     README version 4
+			     README version 5
 
 Author: Choel (Sadmean)
 
@@ -37,6 +37,7 @@ scubaValues:
     goldAir: 320
 system:
     ignorePermissions: true
+    SuperPerms: true
     blockHatInstalled: false
 
     
@@ -45,7 +46,9 @@ system:
 	I believe vanilla Minecraft's default value is 300
 	
 	setting 'ignorePermissions' to false tells the addon to not bother checking for permissions, and just assume everyone
-	is allowed to use scubagear. 
+	is allowed to use scubagear.
+	
+	setting SuperPerms to true tells the plugin to use the bukkit API to do permissions checks (the new way) rather then hook into Permissions 2/3/4 directly.
 	
 4. Permissions and other plugin support?
 	
@@ -62,11 +65,24 @@ system:
     ScubaKit.ScubaGear.Chain - players can use a chain helm to change their maximum air. This value is ignored if complexPermissions is false
     ScubaKit.ScubaGear.Leather - players can use a leather helm to change their maximum air. This value is ignored if complexPermissions is false
 
-  BlockHat. 
-  This mod should work well with blockhat. Just set blockHatInstalled to true, and the plugin will add settings for other kinds of blocks.
+	There are also permission settings for other block types, for mods that allow you to put other stuff on your head. (BlockHat)
+	
+	ScubaKit.ScubaGear.<TypeID>
+	
+	where typeID is the block type. Example;
+	
+	ScubaKit.ScubaGear.20
+	Would give a user to permission to have their air level changed by wearing a glass block.
+	
+	To change the air given by these blocks, you must set "blockHatInstalled" to true;
+	
+	blockHatInstalled: true
+	
+	this will tell the mod to expand your settings file to include settings for all block types.
 
  5. How do I contact the author
 
 	My E-mail address is sadmean@sadmean.com
 	The source for this Plugin is at https://github.com/choel/ScubaKit
+	Old and new version can be found at http://mc.sadmean.com/bukkitMods/ScubaKit/
 	There is also a thread on the bukkit forums, probably where you found this plugin
