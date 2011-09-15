@@ -61,106 +61,8 @@ public class ScubaKit extends JavaPlugin {
 	public static int configVersion = 0;
 	public static boolean SuperPerms = true;
 	//Blockhat settings here:
-	public static int block1Air = defaultAir;
-	public static int block2Air = defaultAir;
-	public static int block3Air = defaultAir;
-	public static int block4Air = defaultAir;
-	public static int block5Air = defaultAir;
-	public static int block6Air = defaultAir;
-	public static int block7Air = defaultAir;
-	public static int block8Air = defaultAir;
-	public static int block9Air = defaultAir;
-	public static int block10Air = defaultAir;
-	public static int block11Air = defaultAir;
-	public static int block12Air = defaultAir;
-	public static int block13Air = defaultAir;
-	public static int block14Air = defaultAir;
-	public static int block15Air = defaultAir;
-	public static int block16Air = defaultAir;
-	public static int block17Air = defaultAir;
-	public static int block18Air = defaultAir;
-	public static int block19Air = defaultAir;
-	public static int block20Air = defaultAir;
-	public static int block21Air = defaultAir;
-	public static int block22Air = defaultAir;
-	public static int block23Air = defaultAir;
-	public static int block24Air = defaultAir;
-	public static int block25Air = defaultAir;
-	public static int block26Air = defaultAir;
-	public static int block27Air = defaultAir;
-	public static int block28Air = defaultAir;
-	public static int block29Air = defaultAir;
-	public static int block30Air = defaultAir;
-	public static int block31Air = defaultAir;
-	public static int block32Air = defaultAir;
-	public static int block33Air = defaultAir;
-	public static int block34Air = defaultAir;
-	public static int block35Air = defaultAir;
-	public static int block38Air = defaultAir;
-	public static int block36Air = defaultAir;
-	public static int block37Air = defaultAir;
-	public static int block39Air = defaultAir;
-	public static int block40Air = defaultAir;
-	public static int block41Air = defaultAir;
-	public static int block42Air = defaultAir;
-	public static int block43Air = defaultAir;
-	public static int block44Air = defaultAir;
-	public static int block45Air = defaultAir;
-	public static int block46Air = defaultAir;
-	public static int block47Air = defaultAir;
-	public static int block48Air = defaultAir;
-	public static int block49Air = defaultAir;
-	public static int block50Air = defaultAir;
-	public static int block51Air = defaultAir;
-	public static int block52Air = defaultAir;
-	public static int block53Air = defaultAir;
-	public static int block54Air = defaultAir;
-	public static int block55Air = defaultAir;
-	public static int block56Air = defaultAir;
-	public static int block57Air = defaultAir;
-	public static int block58Air = defaultAir;
-	public static int block59Air = defaultAir;
-	public static int block60Air = defaultAir;
-	public static int block61Air = defaultAir;
-	public static int block62Air = defaultAir;
-	public static int block63Air = defaultAir;
-	public static int block64Air = defaultAir;
-	public static int block65Air = defaultAir;
-	public static int block66Air = defaultAir;
-	public static int block67Air = defaultAir;
-	public static int block68Air = defaultAir;
-	public static int block69Air = defaultAir;
-	public static int block70Air = defaultAir;
-	public static int block71Air = defaultAir;
-	public static int block72Air = defaultAir;
-	public static int block73Air = defaultAir;
-	public static int block74Air = defaultAir;
-	public static int block75Air = defaultAir;
-	public static int block76Air = defaultAir;
-	public static int block77Air = defaultAir;
-	public static int block78Air = defaultAir;
-	public static int block79Air = defaultAir;
-	public static int block80Air = defaultAir;
-	public static int block81Air = defaultAir;
-	public static int block82Air = defaultAir;
-	public static int block83Air = defaultAir;
-	public static int block84Air = defaultAir;
-	public static int block85Air = defaultAir;
-	public static int block86Air = defaultAir;
-	public static int block87Air = defaultAir;
-	public static int block88Air = defaultAir;
-	public static int block89Air = defaultAir;
-	public static int block90Air = defaultAir;
-	public static int block91Air = defaultAir;
-	public static int block92Air = defaultAir;
-	public static int block93Air = defaultAir;
-	public static int block94Air = defaultAir;
-	public static int block95Air = defaultAir;
-	public static int block96Air = defaultAir;
-	public static int block97Air = defaultAir;
-	public static int block98Air = defaultAir;
-	public static int block99Air = defaultAir;
-	public static int block100Air = defaultAir;
+	public static int maxBlockHatValue = 96;
+	public static int[] blockHatValues;
 	//THESE VALUES SHOULD BE OVERWRITTEN BY CONFIG.YML
 	
 	
@@ -172,31 +74,30 @@ public class ScubaKit extends JavaPlugin {
 	
 	public static PermissionHandler permissionHandler; //permissions handler
 	
-    private static ScubaKit thisPlugin = null; //I don't know what this does. Necessary for fancy log
+	private static ScubaKit thisPlugin = null; //I don't know what this does. Necessary for fancy log
     
 	
 	public static Logger log = Logger.getLogger("Minecraft"); //logger object. can be written to directly with "log.info("herp derp")
     
-    public static ScubaKit getThisPlugin() { //I do not know. Needed for fancy log
-        return thisPlugin; 
-    }
+	public static ScubaKit getThisPlugin() { //I do not know. Needed for fancy log
+		return thisPlugin; 
+	}
 
-    private static void setThisPlugin(final ScubaKit thisPlugin) //also need for fancy log and other things
-    {
-        ScubaKit.thisPlugin = thisPlugin;
-    }
+	private static void setThisPlugin(final ScubaKit thisPlugin) {
+		ScubaKit.thisPlugin = thisPlugin;
+	}
 	
 
-    public void onLoad() //onLoad is called the instant this plugin is touched.
-    {
-        setThisPlugin(this); //not 100% sure
-    }
+	public void onLoad() {
+		setThisPlugin(this); //not 100% sure
+	}
 	    
 	public void onEnable(){  //onEnable is called after onLoad
 		PluginManager pm = this.getServer().getPluginManager(); //register this plugin
 		pm.registerEvent(Event.Type.PLAYER_MOVE, playerListener, Event.Priority.Normal, this); //register our playerListener
 		pm.registerEvent(Event.Type.PLAYER_JOIN, playerListener, Event.Priority.Normal, this); //register our serverListener (not needed)?
 		log_It("info", "Enabled started");
+		blockHatValues = new int[maxBlockHatValue + 1];
 		new File(mainDirectory).mkdir();  //makes our directory if needed
 		if(!configFile.exists()){ //if your config does not exist then ...
 	         try {
@@ -385,72 +286,25 @@ public class ScubaKit extends JavaPlugin {
 					player.setMaximumAir(chainAir);
 					log_It("finest", "set max air to chain levels");
 					break;
-				//start blockhat stuff.
-				case 1:
+				default: 
+					//start blockhat stuff.
 					if(blockHatInstalled) {
-						player.setMaximumAir(block1Air);
-						log_It("finest", "set max air to block.1 levels");
+						if(helm.getTypeId() < maxBlockHatValue && helm.getTypeId() > 0) {
+							player.setMaximumAir(blockHatValues[helm.getTypeId()]);
+							log_It("finest", "set air to block." + Integer.toString(blockHatValues[helm.getTypeId()]) + " levels"); 
+						} else { //not a configured helm
+							player.setMaximumAir(defaultAir);
+							log_It("finest", "Player wearing unknown block. TypeID is : " + Integer.toString(helm.getTypeId()));
+						}
 					} else {
 						player.setMaximumAir(defaultAir);
-					}
-				case 2:
-					if(blockHatInstalled) {
-						player.setMaximumAir(block2Air);
-						log_It("finest", "set max air to block.2 levels");
-					} else {
-						player.setMaximumAir(defaultAir);
+						log_It("finest", "set air to default"); 						
 					}
 					break;
-				case 3:
-					if(blockHatInstalled) {
-						player.setMaximumAir(block3Air);
-						log_It("finest", "set max air to block.3 levels");
-					} else {
-						player.setMaximumAir(defaultAir);
-					}
-					break;
-				case 4:
-					if(blockHatInstalled) {
-						player.setMaximumAir(block4Air);
-						log_It("finest", "set max air to block.4 levels");
-					} else {
-						player.setMaximumAir(defaultAir);
-					}
-					break;
-				case 5:
-					if(blockHatInstalled) {
-						player.setMaximumAir(block5Air);
-						log_It("finest", "set max air to block.5 levels");
-					} else {
-						player.setMaximumAir(defaultAir);
-					}
-					break;
-				case 6:
-					if(blockHatInstalled) {
-						player.setMaximumAir(block6Air);
-						log_It("finest", "set max air to block.6 levels");
-					} else {
-						player.setMaximumAir(defaultAir);
-					}
-					break;
-				case 20:
-					if(blockHatInstalled) {
-						player.setMaximumAir(block20Air);
-						log_It("finest", "set max air to block.20 levels");
-					} else {
-						player.setMaximumAir(defaultAir);
-					}
-					break;
-				default: //not a configured helm
-					player.setMaximumAir(defaultAir);
-					log_It("finest", "set air to default"); 
-					break;
-			}
+			} //this one ends our switch
 		} else {
 			//do nothing because those code is NO LONGER NEEDED!						
-		}
-
-		
+		}		
 	}
 	
 	/**
