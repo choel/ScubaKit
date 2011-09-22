@@ -45,7 +45,7 @@ public class ScubaKit extends JavaPlugin {
 	static public File configFile = new File(mainDirectory + File.separator + "config.yml"); //location of configfile. 
 	
 	//default settings
-	public static int pumpkinAir = 2025; // default value for maxAir (air after putting on the scuba helm
+	public static int pumpkinAir = 320; // default value for maxAir (air after putting on the scuba helm
 	public static int defaultAir = 320; //default value for defaultAir (air when not wearing the scuba helm
 	public static int goldAir = defaultAir;
 	public static int diamondAir = defaultAir;

@@ -15,7 +15,7 @@ Index:
 1. What is ScubaKit?
 	
 	ScubaKit is a plugin for Bukkit (itself a mod for Minecraft) that allows helmets to be used as scuba diving dear.
-	By default, only the pumpkin allows you to stay underwater for an extra chunk of time, but this can be configured.
+	Basicly, having a helmet increases your maximum air, the time can be configured.
 
 2. How do I install ScubaKit?
 
