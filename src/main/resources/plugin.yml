@@ -1,6 +1,6 @@
 name: ScubaKit
 main: com.sadmean.mc.ScubaKit.ScubaKit
-version: 3.0.0.A
+version: 3.0.0.B
 author: Choelian
 softdepend: [Permissions]
 permissions:
