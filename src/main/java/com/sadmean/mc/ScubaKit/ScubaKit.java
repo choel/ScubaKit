@@ -57,11 +57,12 @@ public class ScubaKit extends JavaPlugin {
 	public static boolean complexPermissions = false;
 	public static boolean airOverridesIfHigher = true;
 	public static boolean blockHatInstalled = false;
+	public static boolean displayRemainingAirMessage = true;
 	public static boolean firstRun = true;
 	public static int configVersion = 0;
 	public static boolean SuperPerms = true;
 	//Blockhat settings here:
-	public static int maxBlockHatValue = 96;
+	public static int maxBlockHatValue = 114;
 	public static int[] blockHatValues;
 	//THESE VALUES SHOULD BE OVERWRITTEN BY CONFIG.YML
 	
@@ -105,6 +106,8 @@ public class ScubaKit extends JavaPlugin {
 	        	configFile.createNewFile(); //... we create it then ...
 	         } catch (IOException ex) { 
 	             ex.printStackTrace(); //not needed anymore probably
+	             //oh wait yeah it totally is because of the new fucked up config loading.
+	             //fuck this I should just go to XML or something.
 	         }
 	 
 		} else { 
@@ -151,9 +154,9 @@ public class ScubaKit extends JavaPlugin {
 								airLeft = player.getRemainingAir();
 								airLeft = airLeft / 20;
 								if (airLeft == 0) {
-									player.sendMessage(ChatColor.DARK_AQUA + "[ScubaKit] " + ChatColor.RED + "YOU ARE OUT OF AIR!"); break;
+									if(displayRemainingAirMessage) player.sendMessage(ChatColor.DARK_AQUA + "[ScubaKit] " + ChatColor.RED + "YOU ARE OUT OF AIR!"); break;
 								} else {
-									player.sendMessage(ChatColor.DARK_AQUA + "[ScubaKit] " + ChatColor.GRAY + Integer.toString(airLeft) + " seconds of air remaining");	
+									if(displayRemainingAirMessage) player.sendMessage(ChatColor.DARK_AQUA + "[ScubaKit] " + ChatColor.GRAY + Integer.toString(airLeft) + " seconds of air remaining");	
 								}
 							}
 							playerNumber++;

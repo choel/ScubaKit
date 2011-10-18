@@ -1,111 +1,131 @@
 package com.sadmean.mc.ScubaKit.config;
 
-import java.util.Map;
+import java.io.FileNotFoundException;
+import java.io.IOException;
 
-import org.bukkit.util.config.Configuration;
+import org.bukkit.configuration.InvalidConfigurationException;
+import org.bukkit.configuration.file.FileConfiguration;
 
 import com.sadmean.mc.ScubaKit.ScubaKit;
 
 public class UpdateConfigFile {
 		
 	public static boolean load() {
-		Configuration configYAML = ScubaKit.getThisPlugin().getConfiguration();
-		configYAML.load();
-		Map<String, Object> map = configYAML.getAll();
-		
+		boolean displayWarning = false;
+		FileConfiguration config;
+		config = ScubaKit.getThisPlugin().getConfig();
+		try {
+			config.load(ScubaKit.configFile);
+		} catch (FileNotFoundException e) {
+			e.printStackTrace();
+			ScubaKit.log_It("warning", "Config file not found. This error probably printed twice");
+		} catch (IOException e) {
+			e.printStackTrace();
+			ScubaKit.log_It("warning", "This should really never happen");
+		} catch (InvalidConfigurationException e) {
+			e.printStackTrace();
+			ScubaKit.log_It("warning", "Your config file appears to be damaged. Delete it!");
+		}
 		//check for defaultAir, if exists. If exists, load it into plugin. Else, set from default values.
-		if(map.containsKey("scubaValues.defaultAir")) {
-			ScubaKit.defaultAir = configYAML.getInt("scubaValues.defaultAir", 0);
+		if(config.contains("scubaValues.defaultAir")) {
+			ScubaKit.defaultAir = config.getInt("scubaValues.defaultAir", 0);
 		} else {
-			configYAML.setProperty("scubaValues.defaultAir", ScubaKit.defaultAir); 
+			config.set("scubaValues.defaultAir", ScubaKit.defaultAir); 
 		}
 		
 		//now for pumpkin air
-		if(map.containsKey("scubaValues.pumpkinAir")) {
-			ScubaKit.pumpkinAir = configYAML.getInt("scubaValues.pumpkinAir", 0);
+		if(config.contains("scubaValues.pumpkinAir")) {
+			ScubaKit.pumpkinAir = config.getInt("scubaValues.pumpkinAir", 0);
 		} else {
-			configYAML.setProperty("scubaValues.pumpkinAir", ScubaKit.pumpkinAir); 
+			config.set("scubaValues.pumpkinAir", ScubaKit.pumpkinAir); 
 		}
 		
 		//next we check diamondAir
-		if(map.containsKey("scubaValues.diamondAir")) {
-			ScubaKit.diamondAir = configYAML.getInt("scubaValues.diamondAir", 0);
+		if(config.contains("scubaValues.diamondAir")) {
+			ScubaKit.diamondAir = config.getInt("scubaValues.diamondAir", 0);
 		} else {
-			configYAML.setProperty("scubaValues.diamondAir", ScubaKit.diamondAir); 
+			config.set("scubaValues.diamondAir", ScubaKit.diamondAir); 
 		}
 		
 		//goldAir
-		if(map.containsKey("scubaValues.goldAir")) {
-			ScubaKit.goldAir = configYAML.getInt("scubaValues.goldAir", 0);
+		if(config.contains("scubaValues.goldAir")) {
+			ScubaKit.goldAir = config.getInt("scubaValues.goldAir", 0);
 		} else {
-			configYAML.setProperty("scubaValues.goldAir", ScubaKit.goldAir); 
+			config.set("scubaValues.goldAir", ScubaKit.goldAir); 
 		}
 		
 		//ironAir
-		if(map.containsKey("scubaValues.ironAir")) {
-			ScubaKit.ironAir = configYAML.getInt("scubaValues.ironAir", 0);
+		if(config.contains("scubaValues.ironAir")) {
+			ScubaKit.ironAir = config.getInt("scubaValues.ironAir", 0);
 		} else {
-			configYAML.setProperty("scubaValues.ironAir", ScubaKit.ironAir); 
+			config.set("scubaValues.ironAir", ScubaKit.ironAir); 
 		}
 		
 		//leatherAir
-		if(map.containsKey("scubaValues.leatherAir")) {
-			ScubaKit.leatherAir = configYAML.getInt("scubaValues.leatherAir", 0);
+		if(config.contains("scubaValues.leatherAir")) {
+			ScubaKit.leatherAir = config.getInt("scubaValues.leatherAir", 0);
 		} else {
-			configYAML.setProperty("scubaValues.leatherAir", ScubaKit.leatherAir); 
+			config.set("scubaValues.leatherAir", ScubaKit.leatherAir); 
 		}
 		
 		//chainAir
-		if(map.containsKey("scubaValues.chainAir")) {
-			ScubaKit.chainAir = configYAML.getInt("scubaValues.chainAir", 0);
+		if(config.contains("scubaValues.chainAir")) {
+			ScubaKit.chainAir = config.getInt("scubaValues.chainAir", 0);
 		} else {
-			configYAML.setProperty("scubaValues.chainAir", ScubaKit.chainAir); 
+			config.set("scubaValues.chainAir", ScubaKit.chainAir); 
 		}
 		
+		//display remaining air message
+		if(config.contains("system.displayRemainingAirMessage")) {
+			ScubaKit.displayRemainingAirMessage = config.getBoolean("system.displayRemainingAirMessage", true);
+		} else {
+			config.set("system.displayRemainingAirMessage", ScubaKit.displayRemainingAirMessage); 
+		}
+				
 		//ignorePermissions
-		if(map.containsKey("system.ignorePermissions")) {
-			ScubaKit.ignorePermissions = configYAML.getBoolean("system.ignorePermissions", true);
+		if(config.contains("system.ignorePermissions")) {
+			ScubaKit.ignorePermissions = config.getBoolean("system.ignorePermissions", true);
 		} else {
-			configYAML.setProperty("system.ignorePermissions", configYAML.getBoolean("scubaValues.ignorePermissions", ScubaKit.ignorePermissions)); 
+			config.set("system.ignorePermissions", config.getBoolean("scubaValues.ignorePermissions", ScubaKit.ignorePermissions)); 
 		}
 		
-		if(map.containsKey("system.SuperPerms")) {
-			ScubaKit.SuperPerms = configYAML.getBoolean("system.SuperPerms", true);
+		if(config.contains("system.SuperPerms")) {
+			ScubaKit.SuperPerms = config.getBoolean("system.SuperPerms", true);
 		} else {
-			configYAML.setProperty("system.SuperPerms", ScubaKit.SuperPerms); 
+			config.set("system.SuperPerms", ScubaKit.SuperPerms); 
 		}
 		//complex permissions
 		/** NO LONGER USED
-		if(map.containsKey("system.complexPermissions")) {
-			ScubaKit.complexPermissions = configYAML.getBoolean("system.complexPermissions", false);
+		if(config.contains("system.complexPermissions")) {
+			ScubaKit.complexPermissions = config.getBoolean("system.complexPermissions", false);
 		} else {
-			configYAML.setProperty("system.complexPermissions", configYAML.getBoolean("scubaValues.complexPermissions", ScubaKit.complexPermissions)); 
+			config.set("system.complexPermissions", config.getBoolean("scubaValues.complexPermissions", ScubaKit.complexPermissions)); 
 		}
 		**/		
 		//version 0 values done
-		if(map.containsKey("system.airOverridesIfHigher")) {
-			ScubaKit.airOverridesIfHigher = configYAML.getBoolean("system.airOverridesIfHigher", false);
+		if(config.contains("system.airOverridesIfHigher")) {
+			ScubaKit.airOverridesIfHigher = config.getBoolean("system.airOverridesIfHigher", false);
 		} else {
-			configYAML.setProperty("system.airOverridesIfHigher", ScubaKit.airOverridesIfHigher); 
+			config.set("system.airOverridesIfHigher", ScubaKit.airOverridesIfHigher); 
 		}
 		
-		if(map.containsKey("system.debugLogs")) {
-			ScubaKit.debugLogs = configYAML.getBoolean("system.debugLogs", false);
+		if(config.contains("system.debugLogs")) {
+			ScubaKit.debugLogs = config.getBoolean("system.debugLogs", false);
 		} else {
-			configYAML.setProperty("system.debugLogs", ScubaKit.debugLogs); 
+			config.set("system.debugLogs", ScubaKit.debugLogs); 
 		}
 		
-		if(map.containsKey("system.firstRun")) {
-			ScubaKit.firstRun = configYAML.getBoolean("system.firstRun", true);
+		if(config.contains("system.firstRun")) {
+			ScubaKit.firstRun = config.getBoolean("system.firstRun", true);
 		} else {
-			configYAML.setProperty("system.firstRun", ScubaKit.firstRun); 
+			config.set("system.firstRun", ScubaKit.firstRun); 
 		}
 				
 		//blockhat integration
-		if(map.containsKey("system.blockHatInstalled")) {
-			ScubaKit.blockHatInstalled = configYAML.getBoolean("system.blockHatInstalled", false);
+		if(config.contains("system.blockHatInstalled")) {
+			ScubaKit.blockHatInstalled = config.getBoolean("system.blockHatInstalled", false);
 		} else {
-			configYAML.setProperty("system.blockHatInstalled", ScubaKit.blockHatInstalled); 
+			config.set("system.blockHatInstalled", ScubaKit.blockHatInstalled); 
 		}
 		
 		if(ScubaKit.blockHatInstalled) {
@@ -114,55 +134,87 @@ public class UpdateConfigFile {
 			//block hat settings start
 			int i = 1;
 			while (i <= ScubaKit.maxBlockHatValue) {
-				if(map.containsKey("scubaValues.blocks." + Integer.toString(i))) {
-					ScubaKit.blockHatValues[i] = configYAML.getInt("scubaValues.blocks." + Integer.toString(i), ScubaKit.defaultAir);
+				if(config.contains("scubaValues.blocks." + Integer.toString(i))) {
+					ScubaKit.blockHatValues[i] = config.getInt("scubaValues.blocks." + Integer.toString(i), ScubaKit.defaultAir);
 				} else {
-					configYAML.setProperty("scubaValues.blocks." + Integer.toString(i), ScubaKit.defaultAir);
-					ScubaKit.blockHatValues[i] = configYAML.getInt("scubaValues.blocks." + Integer.toString(i), ScubaKit.defaultAir);
+					config.set("scubaValues.blocks." + Integer.toString(i), ScubaKit.defaultAir);
+					ScubaKit.blockHatValues[i] = config.getInt("scubaValues.blocks." + Integer.toString(i), ScubaKit.defaultAir);
 				}
 				i++;
 			}
 			
 			//special fix for hack from 2.1.7
-			if(map.containsKey("scubaValues.blocks.GlassAir")) {
-				ScubaKit.blockHatValues[20] = configYAML.getInt("scubaValues.blocks.GlassAir", ScubaKit.defaultAir); 
-				configYAML.setProperty("scubaValues.blocks.20", configYAML.getInt("scubaValues.blocks.GlassAir", ScubaKit.defaultAir));
-				configYAML.removeProperty("scubaValues.blocks.GlassAir");
+			if(config.contains("scubaValues.blocks.GlassAir")) {
+				ScubaKit.blockHatValues[20] = config.getInt("scubaValues.blocks.GlassAir", ScubaKit.defaultAir); 
+				config.set("scubaValues.blocks.20", config.getInt("scubaValues.blocks.GlassAir", ScubaKit.defaultAir));
 			}
 			
 		}
 		
 		//remove old values
-		if(map.containsKey("scubaValues.configVersion")) {
-			configYAML.removeProperty("scubaValues.configVersion");
+		if(config.contains("scubaValues.configVersion")) {
+			try {
+			config.set("scubaValues.configVersion", null);
+			} catch (IllegalArgumentException e) {
+				displayWarning = true;
+			}
 			ScubaKit.log_It("info", "OLD VALUE: scubaValues.configVersion removed"); 
 		}
 		
-		if(map.containsKey("system.configVersion")) {
-			configYAML.removeProperty("system.configVersion");
+		if(config.contains("system.configVersion")) {
+			try {
+				config.set("system.configVersion", null);
+				} catch (IllegalArgumentException e) {
+					displayWarning = true;
+				}
 			ScubaKit.log_It("info", "OLD VALUE: system.configVersion removed"); 
 		}
 		
-		if(map.containsKey("scubaValues.ignorePermission")) {
-			configYAML.removeProperty("scubaValues.ignorePermissions");
+		if(config.contains("scubaValues.ignorePermission")) {
+			try {
+				config.set("scubaValues.ignorePermissions", null);
+			} catch (IllegalArgumentException e) {
+				displayWarning = true;
+			}
 			ScubaKit.log_It("info", "OLD VALUE: scubaValues.ignorePermission removed"); 
 		}
 		
-		if(map.containsKey("scubaValues.complexPermissions")) {
-			configYAML.removeProperty("scubaValues.complexPermissions");
+		if(config.contains("scubaValues.complexPermissions")) {
+			try{
+				config.set("scubaValues.complexPermissions", null);
+			} catch (IllegalArgumentException e) {
+				displayWarning = true;
+			}
 			ScubaKit.log_It("info", "OLD VALUE: scubaValues.complexPermissions removed"); 
 		}
 		
-		if(map.containsKey("system.complexPermissions")) {
-			configYAML.removeProperty("system.complexPermissions");
+		if(config.contains("system.complexPermissions")) {
+			try {
+				config.set("system.complexPermissions", null);
+			} catch (IllegalArgumentException e) {
+				displayWarning = true;
+			}
 			ScubaKit.log_It("info", "OLD VALUE: system.complexPermissions removed"); 
 		}
 		
-		if(map.containsKey("scubaValues.blocks.Glass")) {
-			configYAML.removeProperty("scubaValues.blocks.Glass");
+		if(config.contains("scubaValues.blocks.Glass")) {
+			try {
+				config.set("scubaValues.blocks.Glass", null);
+			} catch (IllegalArgumentException e) {
+				displayWarning = true;
+			}
 			ScubaKit.log_It("info", "OLD VALUE: scubaValues.blocks.Glass removed"); 
 		}
-						
+		
+		if(config.contains("scubaValues.blocks.GlassAir")) {
+			try {
+				config.set("scubaValues.blocks.GlassAir", null);
+			} catch (IllegalArgumentException e) {
+				displayWarning = true;
+			}
+			ScubaKit.log_It("info", "OLD VALUE: scubaValues.blocks.GlassAir removed"); 
+		}
+			
 		//check for integrity 
 		if (ScubaKit.defaultAir == -1) {
 			ScubaKit.log_It("severe", "value key map load failed. This is very bad");
@@ -170,23 +222,45 @@ public class UpdateConfigFile {
 			return false;
 		}
 		
-		if(!configYAML.save()) {
-			ScubaKit.log_It("severe", "Saving error, this should never happen");
+		//save
+		try {
+			config.save(ScubaKit.configFile);
+		} catch (IOException e) {
+			e.printStackTrace();
+			ScubaKit.log_It("warning", "saving error!");
 			return false;
+		}
+
+		if(displayWarning) {
+			ScubaKit.log_It("warning", "got IllegalArgumentException on removing vaules. You probably are using CraftBukkit 1317. This warning will go away on the next RB of CraftBukkit");
 		}
 		return true;
 	}
 	
 	public static boolean firstRun() {
-		Configuration configYAML = ScubaKit.getThisPlugin().getConfiguration();
-		configYAML.load();
-		configYAML.setProperty("system.firstRun", false);
-		if(configYAML.save()) {
-			return true;
-		} else {
-			ScubaKit.log_It("severe", "Saving error, this should never happen");
+		FileConfiguration config;
+		config = ScubaKit.getThisPlugin().getConfig();
+		try {
+			config.load(ScubaKit.configFile);
+		} catch (FileNotFoundException e) {
+			e.printStackTrace();
+			ScubaKit.log_It("warning", "Config file not found. This error probably printed twice");
+		} catch (IOException e) {
+			e.printStackTrace();
+			ScubaKit.log_It("warning", "This should really never happen");
+		} catch (InvalidConfigurationException e) {
+			e.printStackTrace();
+			ScubaKit.log_It("warning", "Your config file appears to be damaged. Delete it!");
+		}
+		config.set("system.firstRun", false);
+		try {
+			config.save(ScubaKit.configFile);
+		} catch (IOException e) {
+			e.printStackTrace();
+			ScubaKit.log_It("warning", "saving error!");
 			return false;
 		}
+		return true;
 	}
 	
 	
