@@ -124,6 +124,7 @@ public class ScubaKit extends JavaPlugin {
 			log_It("warning", "3. We now support SuperPerms, which is enabled by default. If you want to use a legacy permissions plugin, please set SuperPerms to false in the config file.");
 		} else {
 			log_It("info", "Remember to update any permissions nodes of ScubaKit.ScubaGear to ScubaKit.ScubaGear.*");
+			log_It("Nature Trail to Hell! (In 3D!) Nature Trail to Hell! (In 3D!) Nature Trail to Hell! (In 3D!) IN THREEE DEEEEE!");
 		}
 		
 		setupPermissions(); //set up permissions yah!!!
@@ -152,11 +153,12 @@ public class ScubaKit extends JavaPlugin {
 							if (player.getMaximumAir() != player.getRemainingAir()) {
 								//Air Check and message send
 								airLeft = player.getRemainingAir();
+								//log_It("warning", player.getName() + " has " + Integer.toString(airLeft) + " tics of air left");
 								airLeft = airLeft / 20;
 								if (airLeft == 0) {
-									if(displayRemainingAirMessage) player.sendMessage(ChatColor.DARK_AQUA + "[ScubaKit] " + ChatColor.RED + "YOU ARE OUT OF AIR!"); break;
+									//if(displayRemainingAirMessage) player.sendMessage(ChatColor.DARK_AQUA + "[ScubaKit] " + ChatColor.RED + "YOU ARE OUT OF AIR!"); break;
 								} else {
-									if(displayRemainingAirMessage) player.sendMessage(ChatColor.DARK_AQUA + "[ScubaKit] " + ChatColor.GRAY + Integer.toString(airLeft) + " seconds of air remaining");	
+									//if(displayRemainingAirMessage) player.sendMessage(ChatColor.DARK_AQUA + "[ScubaKit] " + ChatColor.GRAY + Integer.toString(airLeft) + " seconds of air remaining");	
 								}
 							}
 							playerNumber++;

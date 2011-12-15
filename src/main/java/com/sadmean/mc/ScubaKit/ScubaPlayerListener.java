@@ -20,6 +20,10 @@ public class ScubaPlayerListener extends PlayerListener {
 	public void onPlayerMove(PlayerMoveEvent event){
 		player = event.getPlayer();
 		ScubaKit.setAir(player);
+		//Dan's trick fix
+		if(player.getRemainingAir() > player.getMaximumAir()) {
+			player.setRemainingAir(player.getMaximumAir());
+		}
 	}
 	
 	public static ScubaKit plugin; public ScubaPlayerListener(ScubaKit instance) { 

@@ -3,13 +3,13 @@
   <groupId>com.sadmean.mc.ScubaKit</groupId>
   <artifactId>ScubaKit</artifactId>
   <name>ScubaKit</name>
-  <version>3.0.0.C</version>
+  <version>3.0.0.D</version>
   <url>http://mc.sadmean.com</url>
   <dependencies>
   	<dependency>
   		<groupId>org.bukkit</groupId>
   		<artifactId>bukkit</artifactId>
-  		<version>0.0.1-SNAPSHOT</version>
+  		<version>1.0.1-R1</version>
   	</dependency>
   	<dependency>
   		<groupId>com.nijikokun.bukkit</groupId>
