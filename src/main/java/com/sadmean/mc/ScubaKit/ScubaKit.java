@@ -40,7 +40,7 @@ public class ScubaKit extends JavaPlugin {
 	
 	static String mainDirectory = "plugins/ScubaKit"; //plugin directory
 	
-	private final ScubaPlayerListener playerListener = new ScubaPlayerListener(this); //the player listener.
+	//private final ScubaPlayerListener playerListener = new ScubaPlayerListener(this); //the player listener.
 		
 	static public File configFile = new File(mainDirectory + File.separator + "config.yml"); //location of configfile. 
 	
@@ -62,7 +62,7 @@ public class ScubaKit extends JavaPlugin {
 	public static int configVersion = 0;
 	public static boolean SuperPerms = true;
 	//Blockhat settings here:
-	public static int maxBlockHatValue = 114;
+	public static int maxBlockHatValue = 150;
 	public static int[] blockHatValues;
 	//THESE VALUES SHOULD BE OVERWRITTEN BY CONFIG.YML
 	
@@ -95,8 +95,11 @@ public class ScubaKit extends JavaPlugin {
 	    
 	public void onEnable(){  //onEnable is called after onLoad
 		PluginManager pm = this.getServer().getPluginManager(); //register this plugin
-		pm.registerEvent(Event.Type.PLAYER_MOVE, playerListener, Event.Priority.Normal, this); //register our playerListener
-		pm.registerEvent(Event.Type.PLAYER_JOIN, playerListener, Event.Priority.Normal, this); //register our serverListener (not needed)?
+		//pm.registerEvent(Event.Type.PLAYER_MOVE, playerListener, Event.Priority.Normal, this); //register our playerListener
+		//pm.registerEvent(Event.Type.PLAYER_JOIN, playerListener, Event.Priority.Normal, this);
+		getServer().getPluginManager().registerEvents(new ScubaPlayerListener(this), this);
+
+		
 		log_It("info", "Enabled started");
 		blockHatValues = new int[maxBlockHatValue + 1];
 		new File(mainDirectory).mkdir();  //makes our directory if needed
@@ -124,7 +127,6 @@ public class ScubaKit extends JavaPlugin {
 			log_It("warning", "3. We now support SuperPerms, which is enabled by default. If you want to use a legacy permissions plugin, please set SuperPerms to false in the config file.");
 		} else {
 			log_It("info", "Remember to update any permissions nodes of ScubaKit.ScubaGear to ScubaKit.ScubaGear.*");
-			log_It("Nature Trail to Hell! (In 3D!) Nature Trail to Hell! (In 3D!) Nature Trail to Hell! (In 3D!) IN THREEE DEEEEE!");
 		}
 		
 		setupPermissions(); //set up permissions yah!!!
