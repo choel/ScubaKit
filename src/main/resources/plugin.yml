@@ -1,15 +1,15 @@
 name: ScubaKit
 main: com.sadmean.mc.ScubaKit.ScubaKit
-version: 3.0.1
+version: 3.0.2
 author: Choelian
 softdepend: [Permissions]
 permissions:
-    ScbuaKit.*:
+    ScubaKit.*:
         description: Gives access to all ScubaKit functions
         children:
             ScubaKit.ScubaGear.*: true
             ScubaKit.Commands.*: true
-    ScbuaKit.ScubaGear.*:
+    ScubaKit.ScubaGear.*:
         description: Gives access to all scubagear
         children:
             ScubaKit.ScubaGear.Pumpkin: true
