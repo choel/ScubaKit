@@ -94,9 +94,6 @@ public class ScubaKit extends JavaPlugin {
 	}
 	    
 	public void onEnable(){  //onEnable is called after onLoad
-		PluginManager pm = this.getServer().getPluginManager(); //register this plugin
-		//pm.registerEvent(Event.Type.PLAYER_MOVE, playerListener, Event.Priority.Normal, this); //register our playerListener
-		//pm.registerEvent(Event.Type.PLAYER_JOIN, playerListener, Event.Priority.Normal, this);
 		getServer().getPluginManager().registerEvents(new ScubaPlayerListener(this), this);
 
 		
