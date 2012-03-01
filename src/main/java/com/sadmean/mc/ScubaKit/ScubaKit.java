@@ -18,7 +18,9 @@ import org.bukkit.plugin.Plugin;
 
 import com.nijiko.permissions.PermissionHandler;
 import com.nijikokun.bukkit.Permissions.Permissions;
+import com.sadmean.mc.ScubaKit.config.ScubaLang;
 import com.sadmean.mc.ScubaKit.config.UpdateConfigFile;
+import com.sadmean.mc.ScubaKit.config.UpdateLangFile;
 
 
 
@@ -43,6 +45,7 @@ public class ScubaKit extends JavaPlugin {
 	//private final ScubaPlayerListener playerListener = new ScubaPlayerListener(this); //the player listener.
 		
 	static public File configFile = new File(mainDirectory + File.separator + "config.yml"); //location of configfile. 
+	static public File langFile = new File(mainDirectory + File.separator + "lang.yml"); //location of the language file
 	
 	//default settings
 	public static int pumpkinAir = 320; // default value for maxAir (air after putting on the scuba helm
@@ -64,6 +67,8 @@ public class ScubaKit extends JavaPlugin {
 	//Blockhat settings here:
 	public static int maxBlockHatValue = 150;
 	public static int[] blockHatValues;
+	//language
+	public static ScubaLang Language;
 	//THESE VALUES SHOULD BE OVERWRITTEN BY CONFIG.YML
 	
 	
@@ -95,14 +100,22 @@ public class ScubaKit extends JavaPlugin {
 	    
 	public void onEnable(){  //onEnable is called after onLoad
 		getServer().getPluginManager().registerEvents(new ScubaPlayerListener(this), this);
-
 		
-		log_It("info", "Enabled started");
 		blockHatValues = new int[maxBlockHatValue + 1];
 		new File(mainDirectory).mkdir();  //makes our directory if needed
+		if(!langFile.exists()) { //if your lang file does not exist then ...
+			try {
+				log_It("info", "No language file detected. Creating default English file");
+				langFile.createNewFile();
+			} catch (IOException ex) {
+				ex.printStackTrace();
+			}
+		} else {
+			//it does exist
+		}
 		if(!configFile.exists()){ //if your config does not exist then ...
 	         try {
-	        	log_It("info", "No config defected. Attempting to create.");
+	        	log_It("info", "No config file defected. Creating default config file");
 	        	configFile.createNewFile(); //... we create it then ...
 	         } catch (IOException ex) { 
 	             ex.printStackTrace(); //not needed anymore probably
@@ -115,6 +128,7 @@ public class ScubaKit extends JavaPlugin {
 		}
 		//start setting values
 		UpdateConfigFile.load();
+		Language = UpdateLangFile.load();
 		if (firstRun) {
 			UpdateConfigFile.firstRun();
 			log_It("warning", "This appears to be your first run of ScubaKit 3.x, Please note that some things have changed since ScubaKit 2.x.");
@@ -177,9 +191,9 @@ public class ScubaKit extends JavaPlugin {
 	public void onDisable(){  
 		if (getThisPlugin().getServer().getScheduler().isCurrentlyRunning(shit)) {
 			getThisPlugin().getServer().getScheduler().cancelTask(shit);
-			log_It("info", "Disabled Completed"); 
+			log_It("info", Language.disable_complete); 
 		} else {
-			log_It("info", "Disabled Completed"); //log us not doing anything.
+			log_It("info", Language.disable_complete); //log us not doing anything.
 			//log_It("warning", "Disabled Completed, but with errors");
 		}
 	}
