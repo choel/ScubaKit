@@ -10,7 +10,7 @@ import com.sadmean.mc.ScubaKit.ScubaKit;
 
 public class UpdateConfigFile {
 		
-	public static boolean load() {
+	public static boolean load(ScubaLang lang) {
 		boolean displayWarning = false;
 		FileConfiguration config;
 		config = ScubaKit.getThisPlugin().getConfig();

@@ -30,12 +30,23 @@ public class UpdateLangFile {
 		ScubaLang Language = new ScubaLang();
 		
 		
-		if(lang.contains("disable_complete")) {
-			Language.disable_complete = lang.getString("disable_complete", "Disable Complete");
+		if(lang.contains("sys.disable_complete")) {
+			Language.sys_disable_complete = lang.getString("disable_complete", "Disable Complete");
 		} else {
 			lang.set("disable_complete", "Disable Complete"); 
 		}
 
+		if(lang.contains("load.error_config404")) {
+			Language.load_error_config404 = lang.getString("load.error_config404", "Config file not found");
+		} else {
+			lang.set("load.error_config404", "Config file not found"); 
+		}
+		
+		if(lang.contains("load.error_IOexception")) {
+			Language.load_error_IOexception = lang.getString("load.error_IOexception", "This should really never happen");
+		} else {
+			lang.set("load.error_IOexception", "This should really never happen"); 
+		}
 
 		
 		return Language;

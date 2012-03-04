@@ -41,6 +41,10 @@ import com.sadmean.mc.ScubaKit.config.UpdateLangFile;
 public class ScubaKit extends JavaPlugin {
 	
 	static String mainDirectory = "plugins/ScubaKit"; //plugin directory
+	static String pluginName;
+	static String pluginVersion;
+	static String fullName;
+	private static PluginDescriptionFile thisYAML;
 	
 	//private final ScubaPlayerListener playerListener = new ScubaPlayerListener(this); //the player listener.
 		
@@ -99,6 +103,10 @@ public class ScubaKit extends JavaPlugin {
 	}
 	    
 	public void onEnable(){  //onEnable is called after onLoad
+		thisYAML = this.getDescription();
+		pluginName = thisYAML.getName();
+		pluginVersion = thisYAML.getVersion();
+		fullName = "[" + pluginName + "][" + pluginVersion + "] ";
 		getServer().getPluginManager().registerEvents(new ScubaPlayerListener(this), this);
 		
 		blockHatValues = new int[maxBlockHatValue + 1];
@@ -127,8 +135,9 @@ public class ScubaKit extends JavaPlugin {
 			//it does exist?
 		}
 		//start setting values
-		UpdateConfigFile.load();
 		Language = UpdateLangFile.load();
+		UpdateConfigFile.load(Language);
+		
 		if (firstRun) {
 			UpdateConfigFile.firstRun();
 			log_It("warning", "This appears to be your first run of ScubaKit 3.x, Please note that some things have changed since ScubaKit 2.x.");
@@ -191,9 +200,9 @@ public class ScubaKit extends JavaPlugin {
 	public void onDisable(){  
 		if (getThisPlugin().getServer().getScheduler().isCurrentlyRunning(shit)) {
 			getThisPlugin().getServer().getScheduler().cancelTask(shit);
-			log_It("info", Language.disable_complete); 
+			log_It("info", Language.sys_disable_complete); 
 		} else {
-			log_It("info", Language.disable_complete); //log us not doing anything.
+			log_It("info", Language.sys_disable_complete); //log us not doing anything.
 			//log_It("warning", "Disabled Completed, but with errors");
 		}
 	}
@@ -226,7 +235,7 @@ public class ScubaKit extends JavaPlugin {
 			}
 		} else {
 			//legacy permissions support
-			if(permissionHandler.has(player, perm)) {
+			if(permissionHandler != null && permissionHandler.has(player, perm)) {
 				return true;
 			} else {
 				return false;
@@ -245,10 +254,11 @@ public class ScubaKit extends JavaPlugin {
 	public static void setAir(Player player) {
 		//lets start with a permissions check
 		String typeID;
-		ItemStack helm;
-		PlayerInventory armor;
-		armor = player.getInventory();
-		helm = armor.getHelmet();
+		ItemStack helm = player.getInventory().getHelmet();
+		if(helm == null) {
+			player.setMaximumAir(defaultAir);
+			return;
+		}
 		switch (helm.getTypeId()) {
 			case 86: //pumpkin
 				typeID = "Pumpkin";
@@ -269,13 +279,18 @@ public class ScubaKit extends JavaPlugin {
 				typeID = "Chain";
 				break;
 			default:
-				typeID = Integer.toString(helm.getTypeId());
+				typeID = Integer.toString(helm.getTypeId()	 	);
 		}
 		
 		if (permCheck(player, "ScubaKit.ScubaGear." + typeID)) {
 			//Checks to see what the player is wearing, then adjusts their lungs accordingly.
-						
-			switch (helm.getTypeId()) {
+			int helmID;
+			if(helm.getType() != null) {
+				helmID = helm.getTypeId();
+			} else {
+				helmID = 0;
+			}
+			switch (helmID) {
 				case 0: //speed fix? we'll see
 					player.setMaximumAir(defaultAir);
 					log_It("finest", "set max air to default levels");
@@ -340,10 +355,6 @@ public class ScubaKit extends JavaPlugin {
 	 * @param message
 	 */
 	public static void log_It(String level, String message) {
-		PluginDescriptionFile thisYAML = getThisPlugin().getDescription();
-		String pluginName = thisYAML.getName();
-		String pluginVersion = thisYAML.getVersion();
-		String fullName = "[" + pluginName + "][" + pluginVersion + "] ";
 		//convert our level into an int for logging
 		int level_int = 6;
 		
