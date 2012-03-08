@@ -18,13 +18,13 @@ public class UpdateConfigFile {
 			config.load(ScubaKit.configFile);
 		} catch (FileNotFoundException e) {
 			e.printStackTrace();
-			ScubaKit.log_It("warning", "Config file not found. This error probably printed twice");
+			ScubaKit.log_It("warning", lang.load_error_config404);
 		} catch (IOException e) {
 			e.printStackTrace();
-			ScubaKit.log_It("warning", "This should really never happen");
+			ScubaKit.log_It("warning", lang.load_error_IOexception);
 		} catch (InvalidConfigurationException e) {
 			e.printStackTrace();
-			ScubaKit.log_It("warning", "Your config file appears to be damaged. Delete it!");
+			ScubaKit.log_It("warning", lang.load_error_invalidConfig);
 		}
 		//check for defaultAir, if exists. If exists, load it into plugin. Else, set from default values.
 		if(config.contains("scubaValues.defaultAir")) {

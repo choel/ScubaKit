@@ -8,12 +8,9 @@ import java.util.logging.Logger;
 import org.bukkit.ChatColor;
 import org.bukkit.World;
 import org.bukkit.plugin.PluginDescriptionFile;
-import org.bukkit.plugin.PluginManager;
 import org.bukkit.plugin.java.JavaPlugin;
 import org.bukkit.entity.Player;
-import org.bukkit.event.Event;
 import org.bukkit.inventory.ItemStack;
-import org.bukkit.inventory.PlayerInventory;
 import org.bukkit.plugin.Plugin;
 
 import com.nijiko.permissions.PermissionHandler;
@@ -137,22 +134,22 @@ public class ScubaKit extends JavaPlugin {
 		//start setting values
 		Language = UpdateLangFile.load();
 		UpdateConfigFile.load(Language);
-		
+		displayRemainingAirMessage = false; //we still force this false due to changes in MineCraft.
+				
 		if (firstRun) {
 			UpdateConfigFile.firstRun();
-			log_It("warning", "This appears to be your first run of ScubaKit 3.x, Please note that some things have changed since ScubaKit 2.x.");
-			log_It("warning", "1. The simple permission system is gone. If any players had the node ScubaKit.ScubaGear, it must be replaced with ");
-			log_It("warning", "ScubaKit.ScubaGear.*");
-			log_It("warning", "2. If you used blockHat or simmilar mod, your scubakit settings related to those mods have been rearranged, please go check them now");
-			log_It("warning", "3. We now support SuperPerms, which is enabled by default. If you want to use a legacy permissions plugin, please set SuperPerms to false in the config file.");
+			if(Language.first_run_1 != "null string") log_It("warning", Language.first_run_1);
+			if(Language.first_run_2 != "null string") log_It("warning", Language.first_run_2);
+			if(Language.first_run_3 != "null string") log_It("warning", Language.first_run_3);
+			if(Language.first_run_4 != "null string") log_It("warning", Language.first_run_4);
 		} else {
-			log_It("info", "Remember to update any permissions nodes of ScubaKit.ScubaGear to ScubaKit.ScubaGear.*");
+			log_It("info", Language.reminder);
 		}
 		
 		setupPermissions(); //set up permissions yah!!!
 			
 		if(pumpkinAir == 0 && defaultAir == 0 && goldAir == 0 && chainAir == 0 && leatherAir == 0 && diamondAir == 0) {
-			log_It("severe", "All values reported as zero, this should never happen"); 
+			log_It("warning", Language.all_values_0); 
 			//if all values are zero, then the config file is 1 of 3 things
 			//1. Blank, maybe the save failed when we tried to create it?
 			//2. Does not exist, but why didn't we create it earlier in onEnable()?
@@ -162,7 +159,7 @@ public class ScubaKit extends JavaPlugin {
 		shit = getThisPlugin().getServer().getScheduler().scheduleSyncRepeatingTask(getThisPlugin(), new Runnable() {
 
 		    public void run() {
-		    	log_It("fine", "ScubaTask is on the case!");
+		    	log_It("fine", Language.cycle_notification);
 		        int worldNumber = 0;
 		        int playerNumber = 0;
 		        int airLeft;
@@ -178,9 +175,9 @@ public class ScubaKit extends JavaPlugin {
 								//log_It("warning", player.getName() + " has " + Integer.toString(airLeft) + " tics of air left");
 								airLeft = airLeft / 20;
 								if (airLeft == 0) {
-									//if(displayRemainingAirMessage) player.sendMessage(ChatColor.DARK_AQUA + "[ScubaKit] " + ChatColor.RED + "YOU ARE OUT OF AIR!"); break;
+									if(displayRemainingAirMessage) player.sendMessage(ChatColor.DARK_AQUA + "[ScubaKit] " + ChatColor.RED + Language.ingame_out_of_air); break;
 								} else {
-									//if(displayRemainingAirMessage) player.sendMessage(ChatColor.DARK_AQUA + "[ScubaKit] " + ChatColor.GRAY + Integer.toString(airLeft) + " seconds of air remaining");	
+									if(displayRemainingAirMessage) player.sendMessage(ChatColor.DARK_AQUA + "[ScubaKit] " + ChatColor.GRAY + Integer.toString(airLeft) + " " + Language.ingame_seconds_of_air_left);	
 								}
 							}
 							playerNumber++;
@@ -193,7 +190,7 @@ public class ScubaKit extends JavaPlugin {
 		}, 60L, 300L);
 
 		if (shit == theFan) {
-			log_It("severe", "Schedule failed. This is really bad");
+			log_It("severe", Language.cycle_failed);
 		}
 	} 
 	
@@ -214,12 +211,12 @@ public class ScubaKit extends JavaPlugin {
 				if (permissionsPlugin != null) {
 					this.permissionHandler = ((Permissions) permissionsPlugin).getHandler();
 				} else {
-					log_It("info", "Permission system not detected, ignorePermissions has be set to true");
+					log_It("info", Language.sys_no_permission);
 					ignorePermissions = true;
 				}
 			}
 		} else {
-			log_It("info", "SuperPerms is set to true, aborting legacy permissions hook");
+			log_It("info", Language.sys_super_perms_active);
 		}
 	}
 	
