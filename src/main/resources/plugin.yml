@@ -1,6 +1,6 @@
 name: ScubaKit
 main: com.sadmean.mc.ScubaKit.ScubaKit
-version: 3.1.0
+version: 3.1.1
 author: Choelian
 softdepend: [Permissions]
 permissions:
@@ -9,6 +9,7 @@ permissions:
         children:
             ScubaKit.ScubaGear.*: true
             ScubaKit.Commands.*: true
+        default: op
     ScubaKit.ScubaGear.*:
         description: Gives access to all scubagear
         children:
@@ -117,6 +118,47 @@ permissions:
             ScubaKit.ScubaGear.79: true
             ScubaKit.ScubaGear.89: true
             ScubaKit.ScubaGear.99: true
+            ScubaKit.ScubaGear.101: true
+            ScubaKit.ScubaGear.102: true
+            ScubaKit.ScubaGear.103: true
+            ScubaKit.ScubaGear.104: true
+            ScubaKit.ScubaGear.105: true
+            ScubaKit.ScubaGear.106: true
+            ScubaKit.ScubaGear.107: true
+            ScubaKit.ScubaGear.108: true
+            ScubaKit.ScubaGear.109: true
+            ScubaKit.ScubaGear.111: true
+            ScubaKit.ScubaGear.112: true
+            ScubaKit.ScubaGear.113: true
+            ScubaKit.ScubaGear.114: true
+            ScubaKit.ScubaGear.115: true
+            ScubaKit.ScubaGear.116: true
+            ScubaKit.ScubaGear.117: true
+            ScubaKit.ScubaGear.118: true
+            ScubaKit.ScubaGear.119: true
+            ScubaKit.ScubaGear.121: true
+            ScubaKit.ScubaGear.122: true
+            ScubaKit.ScubaGear.123: true
+            ScubaKit.ScubaGear.124: true
+            ScubaKit.ScubaGear.125: true
+            ScubaKit.ScubaGear.126: true
+            ScubaKit.ScubaGear.127: true
+            ScubaKit.ScubaGear.128: true
+            ScubaKit.ScubaGear.129: true
+            ScubaKit.ScubaGear.131: true
+            ScubaKit.ScubaGear.132: true
+            ScubaKit.ScubaGear.133: true
+            ScubaKit.ScubaGear.134: true
+            ScubaKit.ScubaGear.135: true
+            ScubaKit.ScubaGear.136: true
+            ScubaKit.ScubaGear.137: true
+            ScubaKit.ScubaGear.138: true
+            ScubaKit.ScubaGear.139: true
+            ScubaKit.ScubaGear.100: true
+            ScubaKit.ScubaGear.110: true
+            ScubaKit.ScubaGear.120: true
+            ScubaKit.ScubaGear.130: true
+        default: op
     ScubaKit.ScubaGear.Pumpkin:
         description: Allows you to use a pumpkin as ScubaGear
         default: op
@@ -134,4 +176,418 @@ permissions:
         default: op
     ScubaKit.ScubaGear.Leather:
         description: Allows you to use a leather helm as ScubaGear
+        default: op
+    ScubaKit.ScubaGear.1:
+        description: Allows you to use block ID x as ScubaGear
+        default: op
+    ScubaKit.ScubaGear.2:
+        description: Allows you to use block ID x as ScubaGear
+        default: op
+    ScubaKit.ScubaGear.3:
+        description: Allows you to use block ID x as ScubaGear
+        default: op
+    ScubaKit.ScubaGear.4:
+        description: Allows you to use block ID x as ScubaGear
+        default: op
+    ScubaKit.ScubaGear.5:
+        description: Allows you to use block ID x as ScubaGear
+        default: op
+    ScubaKit.ScubaGear.6:
+        description: Allows you to use block ID x as ScubaGear
+        default: op
+    ScubaKit.ScubaGear.7:
+        description: Allows you to use block ID x as ScubaGear
+        default: op
+    ScubaKit.ScubaGear.8:
+        description: Allows you to use block ID x as ScubaGear
+        default: op
+    ScubaKit.ScubaGear.9:
+        description: Allows you to use block ID x as ScubaGear
+        default: op
+    ScubaKit.ScubaGear.10:
+        description: Allows you to use block ID x as ScubaGear
+        default: op
+    ScubaKit.ScubaGear.11:
+        description: Allows you to use block ID x as ScubaGear
+        default: op
+    ScubaKit.ScubaGear.12:
+        description: Allows you to use block ID x as ScubaGear
+        default: op
+    ScubaKit.ScubaGear.13:
+        description: Allows you to use block ID x as ScubaGear
+        default: op
+    ScubaKit.ScubaGear.14:
+        description: Allows you to use block ID x as ScubaGear
+        default: op
+    ScubaKit.ScubaGear.15:
+        description: Allows you to use block ID x as ScubaGear
+        default: op
+    ScubaKit.ScubaGear.16:
+        description: Allows you to use block ID x as ScubaGear
+        default: op
+    ScubaKit.ScubaGear.17:
+        description: Allows you to use block ID x as ScubaGear
+        default: op
+    ScubaKit.ScubaGear.18:
+        description: Allows you to use block ID x as ScubaGear
+        default: op
+    ScubaKit.ScubaGear.19:
+        description: Allows you to use block ID x as ScubaGear
+        default: op
+    ScubaKit.ScubaGear.20:
+        description: Allows you to use block ID x as ScubaGear
+        default: op
+    ScubaKit.ScubaGear.21:
+        description: Allows you to use block ID x as ScubaGear
+        default: op
+    ScubaKit.ScubaGear.22:
+        description: Allows you to use block ID x as ScubaGear
+        default: op
+    ScubaKit.ScubaGear.23:
+        description: Allows you to use block ID x as ScubaGear
+        default: op
+    ScubaKit.ScubaGear.24:
+        description: Allows you to use block ID x as ScubaGear
+        default: op
+    ScubaKit.ScubaGear.25:
+        description: Allows you to use block ID x as ScubaGear
+        default: op
+    ScubaKit.ScubaGear.26:
+        description: Allows you to use block ID x as ScubaGear
+        default: op
+    ScubaKit.ScubaGear.27:
+        description: Allows you to use block ID x as ScubaGear
+        default: op
+    ScubaKit.ScubaGear.28:
+        description: Allows you to use block ID x as ScubaGear
+        default: op
+    ScubaKit.ScubaGear.29:
+        description: Allows you to use block ID x as ScubaGear
+        default: op
+    ScubaKit.ScubaGear.30:
+        description: Allows you to use block ID x as ScubaGear
+        default: op
+    ScubaKit.ScubaGear.31:
+        description: Allows you to use block ID x as ScubaGear
+        default: op
+    ScubaKit.ScubaGear.32:
+        description: Allows you to use block ID x as ScubaGear
+        default: op
+    ScubaKit.ScubaGear.33:
+        description: Allows you to use block ID x as ScubaGear
+        default: op
+    ScubaKit.ScubaGear.34:
+        description: Allows you to use block ID x as ScubaGear
+        default: op
+    ScubaKit.ScubaGear.35:
+        description: Allows you to use block ID x as ScubaGear
+        default: op
+    ScubaKit.ScubaGear.36:
+        description: Allows you to use block ID x as ScubaGear
+        default: op
+    ScubaKit.ScubaGear.37:
+        description: Allows you to use block ID x as ScubaGear
+        default: op
+    ScubaKit.ScubaGear.38:
+        description: Allows you to use block ID x as ScubaGear
+        default: op
+    ScubaKit.ScubaGear.39:
+        description: Allows you to use block ID x as ScubaGear
+        default: op
+    ScubaKit.ScubaGear.40:
+        description: Allows you to use block ID x as ScubaGear
+        default: op
+    ScubaKit.ScubaGear.41:
+        description: Allows you to use block ID x as ScubaGear
+        default: op
+    ScubaKit.ScubaGear.42:
+        description: Allows you to use block ID x as ScubaGear
+        default: op
+    ScubaKit.ScubaGear.43:
+        description: Allows you to use block ID x as ScubaGear
+        default: op
+    ScubaKit.ScubaGear.44:
+        description: Allows you to use block ID x as ScubaGear
+        default: op
+    ScubaKit.ScubaGear.45:
+        description: Allows you to use block ID x as ScubaGear
+        default: op
+    ScubaKit.ScubaGear.46:
+        description: Allows you to use block ID x as ScubaGear
+        default: op
+    ScubaKit.ScubaGear.47:
+        description: Allows you to use block ID x as ScubaGear
+        default: op
+    ScubaKit.ScubaGear.49:
+        description: Allows you to use block ID x as ScubaGear
+        default: op
+    ScubaKit.ScubaGear.50:
+        description: Allows you to use block ID x as ScubaGear
+        default: op
+    ScubaKit.ScubaGear.51:
+        description: Allows you to use block ID x as ScubaGear
+        default: op
+    ScubaKit.ScubaGear.52:
+        description: Allows you to use block ID x as ScubaGear
+        default: op
+    ScubaKit.ScubaGear.53:
+        description: Allows you to use block ID x as ScubaGear
+        default: op
+    ScubaKit.ScubaGear.54:
+        description: Allows you to use block ID x as ScubaGear
+        default: op
+    ScubaKit.ScubaGear.55:
+        description: Allows you to use block ID x as ScubaGear
+        default: op
+    ScubaKit.ScubaGear.56:
+        description: Allows you to use block ID x as ScubaGear
+        default: op
+    ScubaKit.ScubaGear.57:
+        description: Allows you to use block ID x as ScubaGear
+        default: op
+    ScubaKit.ScubaGear.58:
+        description: Allows you to use block ID x as ScubaGear
+        default: op
+    ScubaKit.ScubaGear.59:
+        description: Allows you to use block ID x as ScubaGear
+        default: op
+    ScubaKit.ScubaGear.60:
+        description: Allows you to use block ID x as ScubaGear
+        default: op
+    ScubaKit.ScubaGear.61:
+        description: Allows you to use block ID x as ScubaGear
+        default: op
+    ScubaKit.ScubaGear.62:
+        description: Allows you to use block ID x as ScubaGear
+        default: op
+    ScubaKit.ScubaGear.63:
+        description: Allows you to use block ID x as ScubaGear
+        default: op
+    ScubaKit.ScubaGear.64:
+        description: Allows you to use block ID x as ScubaGear
+        default: op
+    ScubaKit.ScubaGear.65:
+        description: Allows you to use block ID x as ScubaGear
+        default: op
+    ScubaKit.ScubaGear.66:
+        description: Allows you to use block ID x as ScubaGear
+        default: op
+    ScubaKit.ScubaGear.67:
+        description: Allows you to use block ID x as ScubaGear
+        default: op
+    ScubaKit.ScubaGear.68:
+        description: Allows you to use block ID x as ScubaGear
+        default: op
+    ScubaKit.ScubaGear.69:
+        description: Allows you to use block ID x as ScubaGear
+        default: op
+    ScubaKit.ScubaGear.70:
+        description: Allows you to use block ID x as ScubaGear
+        default: op
+    ScubaKit.ScubaGear.71:
+        description: Allows you to use block ID x as ScubaGear
+        default: op
+    ScubaKit.ScubaGear.72:
+        description: Allows you to use block ID x as ScubaGear
+        default: op
+    ScubaKit.ScubaGear.73:
+        description: Allows you to use block ID x as ScubaGear
+        default: op
+    ScubaKit.ScubaGear.74:
+        description: Allows you to use block ID x as ScubaGear
+        default: op
+    ScubaKit.ScubaGear.75:
+        description: Allows you to use block ID x as ScubaGear
+        default: op
+    ScubaKit.ScubaGear.76:
+        description: Allows you to use block ID x as ScubaGear
+        default: op
+    ScubaKit.ScubaGear.77:
+        description: Allows you to use block ID x as ScubaGear
+        default: op
+    ScubaKit.ScubaGear.78:
+        description: Allows you to use block ID x as ScubaGear
+        default: op
+    ScubaKit.ScubaGear.79:
+        description: Allows you to use block ID x as ScubaGear
+        default: op
+    ScubaKit.ScubaGear.80:
+        description: Allows you to use block ID x as ScubaGear
+        default: op
+    ScubaKit.ScubaGear.81:
+        description: Allows you to use block ID x as ScubaGear
+        default: op
+    ScubaKit.ScubaGear.82:
+        description: Allows you to use block ID x as ScubaGear
+        default: op
+    ScubaKit.ScubaGear.83:
+        description: Allows you to use block ID x as ScubaGear
+        default: op
+    ScubaKit.ScubaGear.84:
+        description: Allows you to use block ID x as ScubaGear
+        default: op
+    ScubaKit.ScubaGear.85:
+        description: Allows you to use block ID x as ScubaGear
+        default: op
+    ScubaKit.ScubaGear.86:
+        description: Allows you to use block ID x as ScubaGear
+        default: op
+    ScubaKit.ScubaGear.87:
+        description: Allows you to use block ID x as ScubaGear
+        default: op
+    ScubaKit.ScubaGear.88:
+        description: Allows you to use block ID x as ScubaGear
+        default: op
+    ScubaKit.ScubaGear.89:
+        description: Allows you to use block ID x as ScubaGear
+        default: op
+    ScubaKit.ScubaGear.90:
+        description: Allows you to use block ID x as ScubaGear
+        default: op
+    ScubaKit.ScubaGear.91:
+        description: Allows you to use block ID x as ScubaGear
+        default: op
+    ScubaKit.ScubaGear.92:
+        description: Allows you to use block ID x as ScubaGear
+        default: op
+    ScubaKit.ScubaGear.93:
+        description: Allows you to use block ID x as ScubaGear
+        default: op
+    ScubaKit.ScubaGear.94:
+        description: Allows you to use block ID x as ScubaGear
+        default: op
+    ScubaKit.ScubaGear.95:
+        description: Allows you to use block ID x as ScubaGear
+        default: op
+    ScubaKit.ScubaGear.96:
+        description: Allows you to use block ID x as ScubaGear
+        default: op
+    ScubaKit.ScubaGear.97:
+        description: Allows you to use block ID x as ScubaGear
+        default: op
+    ScubaKit.ScubaGear.98:
+        description: Allows you to use block ID x as ScubaGear
+        default: op
+    ScubaKit.ScubaGear.99:
+        description: Allows you to use block ID x as ScubaGear
+        default: op
+    ScubaKit.ScubaGear.100:
+        description: Allows you to use block ID x as ScubaGear
+        default: op
+    ScubaKit.ScubaGear.101:
+        description: Allows you to use block ID x as ScubaGear
+        default: op
+    ScubaKit.ScubaGear.102:
+        description: Allows you to use block ID x as ScubaGear
+        default: op
+    ScubaKit.ScubaGear.103:
+        description: Allows you to use block ID x as ScubaGear
+        default: op
+    ScubaKit.ScubaGear.104:
+        description: Allows you to use block ID x as ScubaGear
+        default: op
+    ScubaKit.ScubaGear.105:
+        description: Allows you to use block ID x as ScubaGear
+        default: op
+    ScubaKit.ScubaGear.106:
+        description: Allows you to use block ID x as ScubaGear
+        default: op
+    ScubaKit.ScubaGear.107:
+        description: Allows you to use block ID x as ScubaGear
+        default: op
+    ScubaKit.ScubaGear.108:
+        description: Allows you to use block ID x as ScubaGear
+        default: op
+    ScubaKit.ScubaGear.109:
+        description: Allows you to use block ID x as ScubaGear
+        default: op
+    ScubaKit.ScubaGear.110:
+        description: Allows you to use block ID x as ScubaGear
+        default: op
+    ScubaKit.ScubaGear.111:
+        description: Allows you to use block ID x as ScubaGear
+        default: op
+    ScubaKit.ScubaGear.112:
+        description: Allows you to use block ID x as ScubaGear
+        default: op
+    ScubaKit.ScubaGear.113:
+        description: Allows you to use block ID x as ScubaGear
+        default: op
+    ScubaKit.ScubaGear.114:
+        description: Allows you to use block ID x as ScubaGear
+        default: op
+    ScubaKit.ScubaGear.115:
+        description: Allows you to use block ID x as ScubaGear
+        default: op
+    ScubaKit.ScubaGear.116:
+        description: Allows you to use block ID x as ScubaGear
+        default: op
+    ScubaKit.ScubaGear.117:
+        description: Allows you to use block ID x as ScubaGear
+        default: op
+    ScubaKit.ScubaGear.118:
+        description: Allows you to use block ID x as ScubaGear
+        default: op
+    ScubaKit.ScubaGear.119:
+        description: Allows you to use block ID x as ScubaGear
+        default: op
+    ScubaKit.ScubaGear.120:
+        description: Allows you to use block ID x as ScubaGear
+        default: op
+    ScubaKit.ScubaGear.121:
+        description: Allows you to use block ID x as ScubaGear
+        default: op
+    ScubaKit.ScubaGear.122:
+        description: Allows you to use block ID x as ScubaGear
+        default: op
+    ScubaKit.ScubaGear.123:
+        description: Allows you to use block ID x as ScubaGear
+        default: op
+    ScubaKit.ScubaGear.124:
+        description: Allows you to use block ID x as ScubaGear
+        default: op
+    ScubaKit.ScubaGear.125:
+        description: Allows you to use block ID x as ScubaGear
+        default: op
+    ScubaKit.ScubaGear.126:
+        description: Allows you to use block ID x as ScubaGear
+        default: op
+    ScubaKit.ScubaGear.127:
+        description: Allows you to use block ID x as ScubaGear
+        default: op
+    ScubaKit.ScubaGear.128:
+        description: Allows you to use block ID x as ScubaGear
+        default: op
+    ScubaKit.ScubaGear.129:
+        description: Allows you to use block ID x as ScubaGear
+        default: op
+    ScubaKit.ScubaGear.130:
+        description: Allows you to use block ID x as ScubaGear
+        default: op
+    ScubaKit.ScubaGear.131:
+        description: Allows you to use block ID x as ScubaGear
+        default: op
+    ScubaKit.ScubaGear.132:
+        description: Allows you to use block ID x as ScubaGear
+        default: op
+    ScubaKit.ScubaGear.133:
+        description: Allows you to use block ID x as ScubaGear
+        default: op
+    ScubaKit.ScubaGear.134:
+        description: Allows you to use block ID x as ScubaGear
+        default: op
+    ScubaKit.ScubaGear.135:
+        description: Allows you to use block ID x as ScubaGear
+        default: op
+    ScubaKit.ScubaGear.136:
+        description: Allows you to use block ID x as ScubaGear
+        default: op
+    ScubaKit.ScubaGear.137:
+        description: Allows you to use block ID x as ScubaGear
+        default: op
+    ScubaKit.ScubaGear.138:
+        description: Allows you to use block ID x as ScubaGear
+        default: op
+    ScubaKit.ScubaGear.139:
+        description: Allows you to use block ID x as ScubaGear
         default: op
